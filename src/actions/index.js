@@ -19,8 +19,34 @@ export const deleteMemosSuccess = (id) => {
   }
 }
 
+export const updateMemosSuccess = (id, memo) => {
+  return {
+    type: 'UPDATE_MEMOS_SUCCESS',
+    payload: {
+      id: id,
+      memo: memo
+    }
+  }
+}
+
+export const updateMemo = (id, memo) => {
+  console.log('MY MEMO : ' + memo)
+  return (dispatch) => {
+    fetch('http://localhost:8080/memos/' + id, {
+      method: 'PUT',
+      body: JSON.stringify({
+        memo: memo
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(memos => dispatch(updateMemosSuccess(id, memo)))
+  }
+}
+
 export const addMemos = (memo) => {
-  console.log(memo)
   return (dispatch) => {
     fetch('http://localhost:8080/memos', {
       method: 'POST',
