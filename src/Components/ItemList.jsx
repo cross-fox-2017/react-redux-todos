@@ -1,30 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Table } from 'semantic-ui-react'
+import { List, Grid } from 'semantic-ui-react'
 
 const ItemList = (props) =>{
   return (
-    <Table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>TASK</th>
-          <th>Complete</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.todos.map((todo, index)=>{
+    <Grid centered columns={4}>
+      <br></br><br></br>
+      <List animated selection verticalAlign='middle'>
+        {props.todos.map((todo, index) => {
           return (
-              <tr key={index}>
-                <td>{todo.id}</td>
-                <td>{todo.task}</td>
-                <td>{todo.completed}</td>
-              </tr>
-            )
-          })
-        }
-      </tbody>
-    </Table>
+            <List.Item key={todo.id}>
+              <List.Content>
+                <List.Header>{todo.task}</List.Header>
+              </List.Content>
+            </List.Item>
+          )
+        })}
+      </List>
+    </Grid>
   )
 }
 

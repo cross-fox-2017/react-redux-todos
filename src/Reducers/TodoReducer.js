@@ -8,6 +8,8 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case 'FETCH_DATA':
         return action.todos
+    case 'ADD_TODO':
+        return state.concat(action.task)
     default:
       return state
   }

@@ -1,4 +1,4 @@
 export { Header } from './Header';
-export { FormAdd } from './FormAdd';
+import FormAdd from './FormAdd';
 import ItemList from './ItemList'
-export { ItemList }
+export { ItemList, FormAdd }

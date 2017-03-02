@@ -2,22 +2,43 @@ import React from 'react'
 import { Form, Button, Container } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { addTodo } from '../Actions'
+import { postData, handleInput } from '../Actions'
 
-export const FormAdd = (props) =>{
-  return (
-    <Container onSubmit={(e)=>props.addTodo(event.tarvet.value)}>
-      <Form>
-        <label>New Todo</label>
-        <input type="text" placeholder='Add New ToDo' />
-        <Button>Add Todo</Button>
-      </Form>
-    </Container>
-  )
+ class FormAdd extends React.Component{
+  state = {
+    text: this.props.text || 'Add Todo'
+  }
+  handleChange = e => {
+    this.setState({ text: e.target.value })
+  }
+  entered = e => {
+    if (e.which === 13){
+      this.props.postData(e.target.value)
+    }
+  }
+  submited = e => {
+    if (true){
+
+    }
+  }
+  render(){
+    return (
+      <Container onSubmit={(e)=>e.preventDefault()}>
+        <Form>
+          <label>New Todo</label>
+          <input type="text"
+            placeholder={this.state.text}
+            autoFocus="true"
+            onChange={this.handleChange}
+            onKeyDown={this.entered}/>
+        </Form>
+      </Container>
+    )
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({addTodo}, dispatch)
+  return bindActionCreators({postData, handleInput}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(FormAdd)

@@ -4,7 +4,7 @@ import FilterReducer from './FilterReducer'
 
 const rootReducers = combineReducers({
   todos: TodoReducer,
-  filter: FilterReducer
+  filter: FilterReducer,
 })
 
 export default rootReducers
