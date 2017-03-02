@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { searchNews } from '../../actions'
 
+
 const Search = (props) => {
   return (
     <div className='search-news'>

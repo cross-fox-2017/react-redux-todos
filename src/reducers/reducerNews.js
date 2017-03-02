@@ -17,7 +17,6 @@ const data = [{
 export const newsListsReducer = () => {
     return data
 }
-
 export const searchKeywordReducer = (state = data, action) => {
     switch (action.type) {
         case 'SEARCH_NEWS':
@@ -25,8 +24,17 @@ export const searchKeywordReducer = (state = data, action) => {
                 return data.title.toLowerCase().match(`${action.payload.text}`.toLowerCase())
             })
             return searchNewsLists
-            break
         default:
             return state
     }
+}
+
+
+export const listtodosReducer = (state = [], action) =>{
+  switch(action.type){
+    case 'LIST_TODOS':
+      return action.payload;
+    default:
+      return state;
+  }
 }
