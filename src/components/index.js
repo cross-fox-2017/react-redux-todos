@@ -1,4 +1,4 @@
-import Todos from './Todos/index.jsx'
+import Todos from './Todos'
 
 export { Header } from './Header.jsx'
 export { Todos }
