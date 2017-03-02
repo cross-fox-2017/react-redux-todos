@@ -3,6 +3,14 @@
     {
       "memo": "keren JSON!",
       "id": 1
+    },
+    {
+      "memo": "Belajar Redux",
+      "id": 2
+    },
+    {
+      "memo": "Belajar React",
+      "id": 3
     }
   ]
 }
