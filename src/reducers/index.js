@@ -1,9 +1,7 @@
 import { combineReducers } from 'redux'
-import { newsListsReducer, searchKeywordReducer, listtodosReducer } from './reducerNews'
+import { listtodosReducer } from './reducerTodos'
 
 const rootReducers = combineReducers({
-  news: newsListsReducer,
-  searchKeyword: searchKeywordReducer,
   todosdata: listtodosReducer
 })
 

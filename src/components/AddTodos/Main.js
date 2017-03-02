@@ -37,7 +37,6 @@ class Main extends Component {
                                   <Table.Cell>{item.status===false ? "false" : "true"}</Table.Cell>
                                   <Table.Cell><a className="editTodos" href="#"><Icon name='delete' /></a><a href="#"><Icon name='edit' /></a></Table.Cell>
                              </Table.Row>
-
                            )
                          })
                        }

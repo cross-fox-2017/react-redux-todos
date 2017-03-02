@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import News from './components/News/Main.js'
+import AddTodos from './components/AddTodos/Main.js'
 import ListTodos from './components/ListTodos/ListTodos.js'
 
 const App = () => (
@@ -23,7 +23,7 @@ const App = () => (
                     </Link>
                 </li>
             </ul>
-            <Route exact path='/' component={News}/>
+            <Route exact path='/' component={AddTodos}/>
             <Route exact path='/listtodos' component={ListTodos}/>
         </div>
     </Router>
