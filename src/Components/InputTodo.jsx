@@ -2,7 +2,7 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { postData, saveEdit } from '../Actions'
+import { postData, saveEdit, deleteTask } from '../Actions'
 
  class InputTodo extends React.Component{
   state = {
@@ -16,15 +16,21 @@ import { postData, saveEdit } from '../Actions'
       if(this.props.newTodo){
         this.props.postData(e.target.value)
       } else {
-        this.props.handleEdit()
-        this.props.saveEdit(e.target.value, this.props.id)
+        this.onSave(e.target.value)
       }
     }
   }
   bluerred = e =>{
     if(!this.props.newTodo){
+      this.onSave(e.target.value)
+    }
+  }
+  onSave = (task) => {
+    if(task.length === 0){
+      this.props.deleteTask(this.props.id)
+    } else {
       this.props.handleEdit()
-      this.props.saveEdit(e.target.value, this.props.id)
+      this.props.saveEdit(task, this.props.id)
     }
   }
   render(){
@@ -42,7 +48,7 @@ import { postData, saveEdit } from '../Actions'
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({postData, saveEdit}, dispatch)
+  return bindActionCreators({postData, saveEdit, deleteTask}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(InputTodo)

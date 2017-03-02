@@ -16,17 +16,8 @@
       "completed": false
     },
     {
-      "task": "Mandi",
-      "id": 4
-    },
-    {
       "task": "Sarapan",
       "id": 5
-    },
-    {
-      "task": "test add todo",
-      "completed": "false",
-      "id": 6
     }
   ]
 }

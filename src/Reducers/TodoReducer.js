@@ -12,6 +12,8 @@ export default (state = initialState, action) => {
         return state.concat(action.task)
     case 'UPDATE_TODO':
         return state.map(todo => todo.id === action.task.id ? action.task : todo)
+    case 'DELETE_TODO':
+        return state.filter(todo => todo.id !== action.id)
     default:
       return state
   }

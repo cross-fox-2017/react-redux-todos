@@ -22,7 +22,21 @@ export const updateTodo = (task) => {
     task
   }
 }
+export const deleteTodo = (id) => {
+  return {
+    type: 'DELETE_TODO',
+    id
+  }
+}
 
+export const deleteTask = (id) => {
+  return (dispatch) => {
+    fetch(`http://localhost:8080/todos/${id}`, {
+      method: 'DELETE'
+    })
+    .then(()=> dispatch(deleteTodo(id)))
+  }
+}
 export const saveEdit = (task, id) => {
   return (dispatch) => {
     fetch(`http://localhost:8080/todos/${id}`, {
