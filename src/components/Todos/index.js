@@ -10,7 +10,6 @@ const style = {
 }
 
 const Todos = () => {
-
   return (
     <div className='container'>
       <br />

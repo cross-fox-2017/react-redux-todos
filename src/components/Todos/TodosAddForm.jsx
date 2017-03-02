@@ -12,7 +12,7 @@ const style = {
 class TodosAddForm extends Component {
   render () {
     return (
-      <form>
+      <form onSubmit=''>
         <input
           style={style.input}
           id='add'

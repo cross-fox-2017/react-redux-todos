@@ -6,6 +6,9 @@ import { fetchTodos } from '../../actions'
 const style = {
   tr: {
     color: '#558b2f'
+  },
+  th: {
+    textAlign: 'center'
   }
 }
 
@@ -19,16 +22,16 @@ class TodosList extends Component {
       <table className='table table-bordered'>
         <thead>
           <tr style={style.tr}>
-            <th>
+            <th style={style.th}>
               No
             </th>
-            <th>
+            <th style={style.th}>
               Content
             </th>
-            <th>
+            <th style={style.th}>
               Completed
             </th>
-            <th>
+            <th style={style.th}>
               Action
             </th>
           </tr>
@@ -36,20 +39,16 @@ class TodosList extends Component {
         <tbody>
           {this.props.todos.map((todo) => (
              <tr key={todo.id}>
-               <td>
+               <td style={style.th}>
                  {todo.id}
                </td>
-               <td>
+               <td style={style.th}>
                  {todo.content}
                </td>
-               <td>
+               <td style={style.th}>
                  {todo.completed}
                </td>
-               <td>
-                 <button type='button' className='btn light-blue darken-3' onClick=''>
-                   <i className='material-icons'>thumbs_up_down</i>
-                 </button>
-                 {' '}
+               <td style={style.th}>
                  <button type='button' className='btn red darken-4' onClick=''>
                    <i className='material-icons'>delete</i>
                  </button>
