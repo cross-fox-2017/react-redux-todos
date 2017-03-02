@@ -8,7 +8,10 @@ const App = () => (
   <div className="App">
     <Router>
         <div>
-            <ul>
+            <ul className="menu-top">
+              <li className='menu-list'>
+                  <a className="active">Todopedia</a>
+              </li>
                 <li className='menu-list'>
                     <Link to='/'>
                         Add Todos

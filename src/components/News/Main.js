@@ -3,26 +3,47 @@ import '../../App.css'
 import { connect } from 'react-redux'
 import InputTodos from './InputTodos.js'
 import { Header } from '../Header/Header.js'
+import { GetAll } from '../../actions/index.js'
+import { Table, Icon} from 'semantic-ui-react'
 
 class Main extends Component {
+  componentDidMount(){
+    this.props.getAllData()
+  }
   render () {
     return (
       <div className='App'>
         <Header />
-        <h1>Add Todos</h1>
+        <h1>Todospedia</h1>
         <InputTodos />
-        <ul className='center'>
-          {this.props.news
-             .map((item, index) => {
-               return (
-                 <li key={index}>
-                   <a href={item.url} className='style-text' target='_blank'>
-                     {item.title}
-                   </a>
-                 </li>
-               )
-             })}
-        </ul>
+          <div className='center showlisttodos'>
+            <Table singleLine>
+              <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>No</Table.HeaderCell>
+                    <Table.HeaderCell>Title</Table.HeaderCell>
+                    <Table.HeaderCell>Description</Table.HeaderCell>
+                    <Table.HeaderCell>Status</Table.HeaderCell>
+                    <Table.HeaderCell>Action</Table.HeaderCell>
+                  </Table.Row>
+              </Table.Header>
+                  <Table.Body>
+                      {this.props.getlisttodos.map((item,index) => {
+                           return (
+                             <Table.Row key={item.id}>
+                                  <Table.Cell>{index+1}</Table.Cell>
+                                  <Table.Cell>{item.title}</Table.Cell>
+                                  <Table.Cell>{item.description}</Table.Cell >
+                                  <Table.Cell>{item.status===false ? "false" : "true"}</Table.Cell>
+                                  <Table.Cell><a className="editTodos" href="#"><Icon name='delete' /></a><a href="#"><Icon name='edit' /></a></Table.Cell>
+                             </Table.Row>
+
+                           )
+                         })
+                       }
+                 </Table.Body>
+             </Table>
+          </div>
       </div>
     )
   }
@@ -30,8 +51,15 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    news: state.searchKeyword
+    getlisttodos: state.todosdata
   }
 }
 
-export default connect(mapStateToProps)(Main)
+const mapDispatchToProps = dispatch => ({
+  getAllData: () => dispatch(GetAll())
+})
+// const mapDispatchToProps = dispatch => {
+//   return bindActionCreators({GetAll},dispatch)
+// }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

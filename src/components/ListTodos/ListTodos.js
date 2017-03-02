@@ -8,14 +8,14 @@ import { Table } from 'semantic-ui-react'
 
 class ListTodos extends Component {
   componentDidMount(){
-    this.props.getDataAll()
+    this.props.getAllData()
   }
 
   render () {
     return (
       <div className='App'>
         <Header />
-        <h1>List Todos</h1>
+        <h1>Listpedia</h1>
         <div className='center'>
           <Table singleLine>
             <Table.Header>
@@ -55,7 +55,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getDataAll: () => dispatch(GetAll())
+  getAllData: () => dispatch(GetAll())
 });
 
 // const mapDispatchToProps = dispatch => {

@@ -27,14 +27,29 @@
 
 ul {
   list-style: none;
-  margin-left: -35px;
   display: inline-block;
 }
 
-.menu-list {
-  display: inline-block;
-  margin: 15px;
+li.menu-list {
+  float:left;
+  padding: 15px 0px;
+
 }
+
+li a{
+  color: white;
+  padding: 16.5px;
+  border-right: 1px solid #bbb;
+}
+
+.active{
+  background-color: #4CAF50;
+}
+
+.menu-list :hover{
+  background-color: #111;
+}
+
 
 .style-text {
   font-family: 'crimson text';
@@ -49,4 +64,16 @@ ul {
 .inputTodos{
   width: 50%;
   margin: 5px auto;
+}
+
+.showlisttodos{
+  margin-top: 15px;
+}
+
+ul.menu-top{
+  background-color: #333;
+  width: 100%;
+}
+.editTodos{
+  margin-right: 15px;
 }
