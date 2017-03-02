@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTodos } from '../actions'
+import { getTodos,deletexTodo } from '../actions'
 import loading from './loading.gif'
+
 
 class TodosTable extends Component {
   componentDidMount() {
@@ -14,7 +15,7 @@ class TodosTable extends Component {
         <tr key={index}>
           <td>{todo.title}</td>
           <td><input type="checkbox" /></td>
-          <td><button>EDIT</button><button>DELETE</button></td>
+          <td><button>EDIT</button><button onClick={() => this.props.deletexTodo(todo)}>DELETE</button></td>
         </tr>
       )
     })
@@ -48,7 +49,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getTodos: () => dispatch(getTodos())
+  getTodos: () => dispatch(getTodos()),
+  deletexTodo: (todo) => dispatch(deletexTodo(todo))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(TodosTable)

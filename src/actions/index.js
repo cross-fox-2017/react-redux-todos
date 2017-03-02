@@ -36,3 +36,21 @@ export const postTodo = (todo) => {
     .then(todo => dispatch(createTodo(todo)))
   }
 }
+
+export const deleteTodo = todo => (
+  {
+    type: 'DELETE_TODO',
+    payload: todo
+  }
+)
+
+export const deletexTodo = (todo) => {
+  console.log(todo);
+  return (dispatch) => {
+    fetch('http://localhost:3001/todos/'+todo.id,{
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(todoKosong => dispatch(deleteTodo(todo)))
+  }
+}

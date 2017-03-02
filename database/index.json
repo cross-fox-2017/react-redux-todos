@@ -1,34 +1,24 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Bangun",
-      "done": false
-    },
-    {
-      "id": 2,
-      "title": "Mandi",
-      "done": false
-    },
-    {
-      "id": 3,
-      "title": "Berangkat",
-      "done": false
-    },
-    {
-      "id": 4,
-      "title": "Makan",
-      "done": false
-    },
-    {
-      "id": 5,
-      "title": "Coding",
-      "done": false
-    },
-    {
-      "title": "makan lagi",
+      "title": "sini",
       "done": false,
-      "id": 6
+      "id": 1
+    },
+    {
+      "title": "liat",
+      "done": false,
+      "id": 2
+    },
+    {
+      "title": "radit",
+      "done": false,
+      "id": 3
+    },
+    {
+      "title": "PA",
+      "done": false,
+      "id": 4
     }
   ]
 }
