@@ -1,10 +1,10 @@
 import React from 'react'
-import { Header, Main } from './components'
+import { Header, Todos } from './components'
 
 const App = () => (
   <div className='App'>
     <Header />
-    <Main />
+    <Todos />
   </div>
 )
 

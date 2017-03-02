@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTodos } from '../actions'
+import { fetchTodos } from '../../actions'
 
 const style = {
   h5: {
@@ -18,7 +18,7 @@ const style = {
   }
 }
 
-class Main extends Component {
+class TodosList extends Component {
   componentDidMount () {
     this.props.fetchTodos()
   }
@@ -71,13 +71,14 @@ class Main extends Component {
           </tbody>
         </table>
         <br />
+        <br />
         <input
           style={style.input}
           id='add'
           type='text'
           placeholder='Add to list...'></input>
         {'  '}
-        <button type='button' className='btn light-green darken-3' onClick=''>
+        <button type='button' className='btn light-green darken-3'>
           <i className='material-icons'>add</i>
         </button>
       </div>
@@ -95,7 +96,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchTodos: () => dispatch(fetchTodos())
 })
 
-Main.propTypes = {
+TodosList.propTypes = {
   todos: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -106,4 +107,4 @@ Main.propTypes = {
   fetchTodos: PropTypes.func.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(TodosList)
