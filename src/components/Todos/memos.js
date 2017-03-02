@@ -41,7 +41,7 @@ class Memos extends Component {
                                             currentlyEditingId: 0,
                                             currentlyEditingInput: ''
                                           })
-                                        }, 10)
+                                        }, 100)
                                       }} style={{ width: '75%', display: 'inline-block' }}>
                           <input onChange={this.handleInputEditChange.bind(this)} type='text' defaultValue={item.memo} />
                           <button type='submit' className='waves-effect waves-light btn'>
