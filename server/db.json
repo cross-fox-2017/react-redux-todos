@@ -1,7 +1,7 @@
 {
   "memos": [
     {
-      "memo": "Keren JSON!",
+      "memo": "Belajar Express",
       "id": 1
     },
     {
@@ -10,7 +10,7 @@
     },
     {
       "memo": "Belajar React",
-      "id": 3
+      "id": 5
     }
   ]
 }
