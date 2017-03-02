@@ -1,19 +1,49 @@
-import React from 'react'
-// import { connect } from 'react-redux'
-// import { bindActionCreators } from 'redux'
+import React, { Component } from 'react'
+import { postTodo } from '../actions'
+import { connect } from 'react-redux'
 
-// import { actionCreateTodo } from '../../actions'
+class CreateTodoForm extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      inputTodo: ''
+    }
+  }
 
-const CreateTodoForm = () => (
-  <div>
-    <form>
-      <br/>
-      Create New Todo:<br/>
-    <input
-      type="text"
-    /><br/>
-    </form>
-  </div>
-)
+  handleChange(e) {
+    this.setState({
+      inputTodo: e.target.value
+    })
+  }
 
-export default CreateTodoForm
+  handleSubmit(e) {
+    e.preventDefault()
+    this.props.postTodo(this.state.inputTodo)
+    this.setState({
+      inputTodo: ''
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit.bind(this)}>
+          <br/>
+          Create New Todo:<br/>
+        <input
+          onChange={this.handleChange.bind(this)}
+          value={this.state.inputTodo}
+          type="text"
+          /><br/>
+      </form>
+    </div>
+    )
+  }
+
+}
+
+const mapDispatchToProps = dispatch => ({
+  postTodo: (newTodo) => dispatch(postTodo(newTodo))
+})
+
+export default connect(null,mapDispatchToProps)(CreateTodoForm)
