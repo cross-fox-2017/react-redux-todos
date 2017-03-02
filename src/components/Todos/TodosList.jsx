@@ -40,13 +40,19 @@ class TodosList extends Component {
           {this.props.todos.map((todo) => (
              <tr key={todo.id}>
                <td style={style.th}>
-                 {todo.id}
+                 <div>
+                   {todo.id}
+                 </div>
                </td>
                <td style={style.th}>
-                 {todo.content}
+                 <div>
+                   {todo.content}
+                 </div>
                </td>
                <td style={style.th}>
-                 {todo.completed}
+                 <div>
+                   {todo.completed}
+                 </div>
                </td>
                <td style={style.th}>
                  <button type='button' className='btn red darken-4' onClick=''>

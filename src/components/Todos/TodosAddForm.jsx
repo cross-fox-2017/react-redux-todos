@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-// import { connect } from 'react-redux'
+import { connect } from 'react-redux'
 
 const style = {
   input: {
@@ -9,15 +9,30 @@ const style = {
   }
 }
 
+import { addTodos } from '../../actions'
+
 class TodosAddForm extends Component {
+  constructor () {
+    super()
+    this.state = {
+      text: ''
+    }
+  }
+  handleChange (event) {
+    this.setState({
+      text: event.target.value
+    })
+  }
+
   render () {
     return (
-      <form onSubmit=''>
+      <form onSubmit={function (e) {e.preventDefault(); return this.props.fetchNewTodos(this.state.text)}}>
         <input
           style={style.input}
           id='add'
           type='text'
-          placeholder='Add to list...'></input>
+          onChange={this.handleChange.bind(this)}
+          placeholder='Add to list...' />
         {'  '}
         <button type='button' className='btn light-green darken-3'>
           <i className='material-icons'>add</i>
@@ -27,27 +42,8 @@ class TodosAddForm extends Component {
   }
 }
 
-export default TodosAddForm
+const mapDispatchToProps = (dispatch) => ({
+  addTodos: () => dispatch(addTodos())
+})
 
-// const mapStateToProps = (state) => {
-//   return {
-//     todos: state.todos
-//   }
-// }
-//
-// const mapDispatchToProps = (dispatch) => ({
-//   fetchTodos: () => dispatch(fetchTodos())
-// })
-//
-// TodosList.propTypes = {
-//   todos: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       content: PropTypes.string.isRequired,
-//       completed: PropTypes.string.isRequired
-//     })
-//   ).isRequired,
-//   fetchTodos: PropTypes.func.isRequired
-// }
-//
-// export default connect(mapStateToProps, mapDispatchToProps)(TodosList)
+export default connect(null, mapDispatchToProps)(TodosAddForm)
