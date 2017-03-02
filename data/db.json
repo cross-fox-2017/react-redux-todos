@@ -3,26 +3,26 @@
     {
       "id": 1,
       "content": "install react",
-      "completed": "true"
+      "completed": true
     },
     {
       "id": 2,
       "content": "install redux",
-      "completed": "true"
+      "completed": true
     },
     {
       "id": 3,
       "content": "make todos with react and redux",
-      "completed": "false"
+      "completed": false
     },
     {
       "id": 4,
       "content": "refactor todos",
-      "completed": "false"
+      "completed": false
     },
     {
       "content": "fetch get and post",
-      "completed": "false",
+      "completed": false,
       "id": 5
     }
   ]

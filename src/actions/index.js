@@ -12,6 +12,13 @@ export const addTodos = (todos) => {
   }
 }
 
+export const deleteTodos = (id) => {
+  return {
+    type: 'DELETE_TODOS',
+    payload: id
+  }
+}
+
 export const fetchTodos = () => {
   return (dispatch) => {
     fetch('http://localhost:3004/todos')
@@ -24,11 +31,11 @@ export const fetchTodos = () => {
   }
 }
 
-export const fetchNewTodos = (newTodo) => {
+export const fetchPostTodos = (newTodo) => {
   return (dispatch) => {
     fetch('http://localhost:3004/todos', {
       method: 'POST',
-      body: JSON.stringify({content: newTodo, completed: 'false'}),
+      body: JSON.stringify({content: newTodo, completed: false}),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -38,6 +45,20 @@ export const fetchNewTodos = (newTodo) => {
       })
       .then(todos => {
         return dispatch(addTodos(todos))
+      })
+  }
+}
+
+export const fetchDeleteTodos = (id) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3004/todos/${id}`, {
+      method: 'DELETE'
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(() => {
+        return dispatch(deleteTodos(id))
       })
   }
 }

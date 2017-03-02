@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTodos } from '../../actions'
+import { fetchTodos, fetchDeleteTodos } from '../../actions'
 
 const style = {
   tr: {
@@ -13,6 +13,20 @@ const style = {
 }
 
 class TodosList extends Component {
+  constructor () {
+    super()
+    this.state = {
+      currentId: 0
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick (event) {
+    this.setState = {
+      currentId: event.target.value
+    }
+  }
+
   componentDidMount () {
     this.props.fetchTodos()
   }
@@ -38,29 +52,30 @@ class TodosList extends Component {
         </thead>
         <tbody>
           {this.props.todos.map((todo) => (
-             <tr key={todo.id}>
-               <td style={style.th}>
-                 <div>
-                   {todo.id}
-                 </div>
-               </td>
-               <td style={style.th}>
-                 <div>
-                   {todo.content}
-                 </div>
-               </td>
-               <td style={style.th}>
-                 <div>
-                   {todo.completed}
-                 </div>
-               </td>
-               <td style={style.th}>
-                 <button type='button' className='btn red darken-4' onClick=''>
-                   <i className='material-icons'>delete</i>
-                 </button>
-               </td>
-             </tr>
-           ))}
+            <tr key={todo.id}>
+              <td style={style.th}>
+                {todo.id}
+              </td>
+              <td style={style.th}>
+                <div>
+                  {todo.content}
+                </div>
+              </td>
+              <td style={style.th}>
+                <div>
+                  {JSON.stringify(todo.completed)}
+                </div>
+              </td>
+              <td style={style.th}>
+                <button
+                  type='button'
+                  className='btn red darken-4'
+                  onClick={(e) => {e.preventDefault(); this.props.fetchDeleteTodos(todo.id)}}>
+                  <i className='material-icons'>delete</i>
+                </button>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
     )
@@ -74,7 +89,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchTodos: () => dispatch(fetchTodos())
+  fetchTodos: () => dispatch(fetchTodos()),
+  fetchDeleteTodos: (id) => dispatch(fetchDeleteTodos(id))
 })
 
 TodosList.propTypes = {
@@ -82,7 +98,7 @@ TodosList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       content: PropTypes.string.isRequired,
-      completed: PropTypes.string.isRequired
+      completed: PropTypes.bool.isRequired
     })
   ).isRequired,
   fetchTodos: PropTypes.func.isRequired

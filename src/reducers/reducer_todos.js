@@ -4,6 +4,8 @@ const TodosReducer = (state = [] , action) => {
       return action.payload
     case 'ADD_TODOS':
       return state.concat(action.payload)
+    case 'DELETE_TODOS':
+      return state.filter(todo => todo.id !== action.payload)
     default:
       return state
   }
