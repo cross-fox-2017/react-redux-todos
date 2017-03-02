@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import '../../App.css'
 import { connect } from 'react-redux'
-import Search from './Search.js'
+import InputTodos from './InputTodos.js'
 import { Header } from '../Header/Header.js'
 
 class Main extends Component {
@@ -9,8 +9,8 @@ class Main extends Component {
     return (
       <div className='App'>
         <Header />
-        <h1>Hacktiv8 News</h1>
-        <Search />
+        <h1>Add Todos</h1>
+        <InputTodos />
         <ul className='center'>
           {this.props.news
              .map((item, index) => {
