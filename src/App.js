@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { fetchData } from './Actions'
-import {Header, FormAdd, ItemList} from './Components'
+import {Header, InputTodo, ItemList} from './Components'
 
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
     return (
       <Container>
         <Header />
-        <FormAdd />
+        <InputTodo />
         <ItemList />
       </Container>
     );

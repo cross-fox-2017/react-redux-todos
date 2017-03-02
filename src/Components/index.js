@@ -1,4 +1,4 @@
 export { Header } from './Header';
-import FormAdd from './FormAdd';
+import InputTodo from './InputTodo';
 import ItemList from './ItemList'
-export { ItemList, FormAdd }
+export { ItemList, InputTodo }
