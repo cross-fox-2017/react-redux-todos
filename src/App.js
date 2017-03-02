@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import List from './components/List';
-import Form from './components/Form';
+import Form from './components/Form.js';
 
 
 class App extends Component {

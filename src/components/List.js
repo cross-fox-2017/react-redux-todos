@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { fetchTodo } from '../action/FETCH_TODO';
+import { deleteTodo } from '../action/DELETE_TODO';
 // import { bindActionCreators } from 'redux';
 
 
@@ -12,7 +13,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchTodo: () => dispatch(fetchTodo())
+  fetchTodo: () => dispatch(fetchTodo()),
+  deleteTodo: list => dispatch(deleteTodo(list))
 })
 
 
@@ -32,12 +34,13 @@ class List extends Component {
           </td>
           <td>
             <button className="btn btn-outline-info">Update</button>
-            <button className="btn btn-outline-danger">Delete</button>
+            <button onClick={() => this.props.deleteTodo(list)} className="btn btn-outline-danger">Delete</button>
           </td>
         </tr>
       )
     })
   }
+  
   render(){
     return(
       <table className="table">

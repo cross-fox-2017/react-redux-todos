@@ -1,9 +1,19 @@
 {
   "list": [
-    {"id": 1, "title": "bangun", "completed": false},
-    {"id": 2, "title": "makan", "completed": false},
-    {"id": 3, "title": "ketawa", "completed": false},
-    {"id": 4, "title": "tidur", "completed": false},
-    {"id": 5, "title": "nonton madrid kalah", "completed": false}
+    {
+      "id": 1,
+      "title": "bangun",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "makan",
+      "completed": false
+    },
+    {
+      "id": 3,
+      "title": "ketawa",
+      "completed": false
+    }
   ]
 }
