@@ -6,7 +6,6 @@ export const setTodos = (todos) => {
 }
 
 export const addTodos = (todos) => {
-  console.log(todos)
   return {
     type: 'ADD_TODOS',
     payload: todos
@@ -29,7 +28,7 @@ export const fetchNewTodos = (newTodo) => {
   return (dispatch) => {
     fetch('http://localhost:3004/todos', {
       method: 'POST',
-      body: JSON.stringify(newTodo),
+      body: JSON.stringify({content: newTodo, completed: 'false'}),
       headers: {
         'Content-Type': 'application/json'
       }
