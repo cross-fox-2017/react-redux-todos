@@ -15,6 +15,9 @@ class ItemList extends React.Component{
   handleEdit(){
     this.setState({ editing: false})
   }
+  completing(id){
+    console.log(id);
+  }
   render(){
     return (
       <Grid centered columns={4}>
@@ -25,7 +28,7 @@ class ItemList extends React.Component{
               return (
                 <List.Item key={todo.id}>
                   <List.Content>
-                    <List.Header onDoubleClick={(e)=>this.editMode(e, todo.id)}>{todo.task}</List.Header>
+                    <List.Header onDoubleClick={(e)=>this.editMode(e, todo.id)} onClick={()=>this.completing(todo.id)}>{todo.task}</List.Header>
                   </List.Content>
                 </List.Item>
               )
