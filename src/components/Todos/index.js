@@ -3,16 +3,7 @@ import MemoList from './memoList'
 import MemoForm from './memoForm'
 
 class Todos extends Component {
-  constructor () {
-    super()
-    this.state = {
-      numChildren: 0
-    }
-  }
-
   render () {
-    const children = []
-
     return (
       <div className='row' style={{ marginTop: 50 }}>
         <div className='col s6 offset-s3'>
