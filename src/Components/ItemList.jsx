@@ -31,7 +31,7 @@ class ItemList extends React.Component{
               )
             } else {
               return (
-                <InputTodo text={todo.task} editing={this.state.editing} key={todo.id} handleEdit={this.handleEdit.bind(this)}/>
+                <InputTodo text={todo.task} id={todo.id} editing={this.state.editing} key={todo.id} handleEdit={this.handleEdit.bind(this)}/>
               )
             }
           })}

@@ -10,6 +10,8 @@ export default (state = initialState, action) => {
         return action.todos
     case 'ADD_TODO':
         return state.concat(action.task)
+    case 'UPDATE_TODO':
+        return state.map(todo => todo.id === action.task.id ? action.task : todo)
     default:
       return state
   }

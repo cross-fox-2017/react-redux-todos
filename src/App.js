@@ -16,7 +16,8 @@ class App extends Component {
     return (
       <Container>
         <Header />
-        <InputTodo />
+        <label>Add New Todo</label>
+        <InputTodo newTodo={true}/>
         <ItemList />
       </Container>
     );

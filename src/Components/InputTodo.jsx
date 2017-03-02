@@ -2,20 +2,29 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { postData, handleInput } from '../Actions'
+import { postData, saveEdit } from '../Actions'
 
  class InputTodo extends React.Component{
   state = {
     text: this.props.text || '',
-    editing: this.props.editing
   }
   handleChange = e => {
     this.setState({ text: e.target.value })
   }
-  entered = (e) => {
+  entered = e => {
     if (e.which === 13){
-      // this.props.postData(e.target.value)
+      if(this.props.newTodo){
+        this.props.postData(e.target.value)
+      } else {
+        this.props.handleEdit()
+        this.props.saveEdit(e.target.value, this.props.id)
+      }
+    }
+  }
+  bluerred = e =>{
+    if(!this.props.newTodo){
       this.props.handleEdit()
+      this.props.saveEdit(e.target.value, this.props.id)
     }
   }
   render(){
@@ -24,7 +33,7 @@ import { postData, handleInput } from '../Actions'
         <input type="text"
           value={this.state.text}
           autoFocus="true"
-          onBlur={(e)=> this.entered(e)}
+          onBlur={(e)=> this.bluerred(e)}
           onChange={this.handleChange}
           onKeyDown={(e)=> this.entered(e)}/>
       </Form>
@@ -33,7 +42,7 @@ import { postData, handleInput } from '../Actions'
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({postData, handleInput}, dispatch)
+  return bindActionCreators({postData, saveEdit}, dispatch)
 }
 
 export default connect(null, mapDispatchToProps)(InputTodo)

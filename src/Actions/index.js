@@ -16,7 +16,25 @@ export const handleInput = (input) => {
     input
   }
 }
+export const updateTodo = (task) => {
+  return {
+    type: 'UPDATE_TODO',
+    task
+  }
+}
 
+export const saveEdit = (task, id) => {
+  return (dispatch) => {
+    fetch(`http://localhost:8080/todos/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type' : 'application/x-www-form-urlencoded'},
+      body: `task=${task}`
+    })
+    .then(task => task.json())
+    .then(task => dispatch(updateTodo(task)))
+  }
+}
 export const fetchData = () => {
   return (dispatch) => {
     fetch('http://localhost:8080/todos')
