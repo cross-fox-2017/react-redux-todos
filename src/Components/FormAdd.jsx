@@ -1,12 +1,23 @@
 import React from 'react'
-import { Button, Form } from 'react-semantic-ui'
+import { Form, Button, Container } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { addTodo } from '../Actions'
 
-export const FormAdd = () =>{
+export const FormAdd = (props) =>{
   return (
-    <form>
-      <label>New Todo</label>
-      <input placeholder='Add New ToDo' />
-      <button type='submit'>Add Todo</button>
-    </form>
+    <Container onSubmit={(e)=>props.addTodo(event.tarvet.value)}>
+      <Form>
+        <label>New Todo</label>
+        <input type="text" placeholder='Add New ToDo' />
+        <Button>Add Todo</Button>
+      </Form>
+    </Container>
   )
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({addTodo}, dispatch)
+}
+
+export default connect(null, mapDispatchToProps)(FormAdd)

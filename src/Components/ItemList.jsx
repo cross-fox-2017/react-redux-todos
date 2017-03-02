@@ -1,17 +1,37 @@
 import React from 'react'
-import { Table } from 'react-semantic-ui'
+import { connect } from 'react-redux'
+import { Table } from 'semantic-ui-react'
 
-export const ItemList = () =>{
+const ItemList = (props) =>{
   return (
-    <table>
+    <Table>
       <thead>
-        <th>ID</th>
-        <th>TASK</th>
-        <th>Complete</th>
+        <tr>
+          <th>ID</th>
+          <th>TASK</th>
+          <th>Complete</th>
+        </tr>
       </thead>
       <tbody>
-        <tr></tr>
+        {props.todos.map((todo, index)=>{
+          return (
+              <tr key={index}>
+                <td>{todo.id}</td>
+                <td>{todo.task}</td>
+                <td>{todo.completed}</td>
+              </tr>
+            )
+          })
+        }
       </tbody>
-    </table>
+    </Table>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    todos: state.todos
+  }
+}
+
+export default connect(mapStateToProps)(ItemList)

@@ -3,7 +3,7 @@ import TodoReducer from './TodoReducer'
 import FilterReducer from './FilterReducer'
 
 const rootReducers = combineReducers({
-  todo: TodoReducer,
+  todos: TodoReducer,
   filter: FilterReducer
 })
 
