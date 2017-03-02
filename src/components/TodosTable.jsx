@@ -1,7 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { getTodos } from '../actions'
+import loading from './loading.gif'
 
 class TodosTable extends Component {
+  componentDidMount() {
+    this.props.getTodos()
+  }
+
   renderTable() {
     return this.props.todos.map((todo, index) => {
       return (
@@ -13,17 +19,23 @@ class TodosTable extends Component {
       )
     })
   }
+
   render() {
     return (
       <div className="Todos-table">
-        <table>
+        { this.props.todos.length === 0 ? <img className="loading" src={loading} alt="loading" /> : true }
+        {<table>
+        <thead>
           <tr>
             <th>Todo</th>
             <th>Done</th>
             <th>Action</th>
           </tr>
+        </thead>
+        <tbody>
           {this.renderTable()}
-        </table>
+        </tbody>
+      </table>}
       </div>
     )
   }
@@ -35,4 +47,8 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(TodosTable)
+const mapDispatchToProps = dispatch => ({
+  getTodos: () => dispatch(getTodos())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(TodosTable)
