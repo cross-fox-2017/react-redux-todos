@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTodos, fetchDeleteTodos, fetchPutTodos } from '../../actions'
+import { fetchTodos, fetchDeleteTodo, fetchPutTodo } from '../../actions'
 
 const style = {
   tr: {
@@ -15,7 +15,12 @@ const style = {
     textAlign: 'center',
     padding: 0,
     width: '45%'
+  },
+  tdCheck: {
+    textAlign: 'center',
+    padding: 0
   }
+
 }
 
 class TodosList extends Component {
@@ -24,10 +29,10 @@ class TodosList extends Component {
     this.state = {
       currentId: 0
     }
-    this.handleClick = this.handleClick.bind(this)
+    this.handleContentClick = this.handleContentClick.bind(this)
   }
 
-  handleClick(id) {
+  handleContentClick(id) {
     this.setState({
       currentId: id
     })
@@ -67,13 +72,13 @@ class TodosList extends Component {
                 {todo.id}
               </td>
               <td style={style.tdItem}>
-                <div onClick={() => this.handleClick(todo.id)} style={{padding: '20px 10px', height: '60px', width: '100%'}}>
+                <div onClick={() => this.handleContentClick(todo.id)} style={{padding: '20px 10px', height: '60px', width: '100%'}}>
                   {todo.id === this.state.currentId
                     ?<form onSubmit={e => { e.preventDefault() }} style={{margin:0, padding:0, marginTop: '-12px'}}>
                       <input
                         style={{textAlign: 'center', margin: 0, padding: 0}}
                         onBlur={(e) => {
-                          this.props.fetchPutTodos(todo.id, e.target.value, todo.completed)
+                          this.props.fetchPutTodo(todo.id, e.target.value, todo.completed)
                           this.setState({
                             currentId: 0
                           })
@@ -88,12 +93,16 @@ class TodosList extends Component {
                   }
                 </div>
               </td>
-              <td style={style.th}>
-                <div>
-                  <form>
-                    <input type="checked" defaultValue={JSON.stringify(todo.completed)}></input>
-                  </form>
-                </div>
+              <td style={style.tdCheck}>
+                <form onClick={() => this.handleClick(todo.id)}>
+                  <input
+                    id={`todo-check-${todo.id}`}
+                    type="checkbox"
+                    className="filled-in"
+                    defaultChecked={todo.completed ? true : ''}
+                  />
+                  <label htmlFor={`todo-check-${todo.id}`}></label>
+                </form>
               </td>
               <td style={style.th}>
                 <button
@@ -101,7 +110,7 @@ class TodosList extends Component {
                   className='btn red darken-4'
                   onClick={e => {
                     e.preventDefault();
-                    this.props.fetchDeleteTodos(todo.id)
+                    this.props.fetchDeleteTodo(todo.id)
                   }}
                 >
                   <i className='material-icons'>delete</i>
@@ -121,10 +130,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+
+// yg kiri: fungsi kita sendiri dengan nama bebas
+// yg kanan: hasil import dari action
 const mapDispatchToProps = (dispatch) => ({
   fetchTodos: () => dispatch(fetchTodos()),
-  fetchDeleteTodos: (id) => dispatch(fetchDeleteTodos(id)),
-  fetchPutTodos: (id, content, completed) => dispatch(fetchPutTodos(id, content, completed))
+  fetchDeleteTodo: (id) => dispatch(fetchDeleteTodo(id)),
+  fetchPutTodo: (id, content, completed) => dispatch(fetchPutTodo(id, content, completed))
 })
 
 TodosList.propTypes = {

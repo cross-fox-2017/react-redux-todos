@@ -7,21 +7,21 @@ export const setTodos = (todos) => {
 
 export const addTodo = (todos) => {
   return {
-    type: 'ADD_TODOS',
+    type: 'ADD_TODO',
     payload: todos
   }
 }
 
 export const deleteTodo = (id) => {
   return {
-    type: 'DELETE_TODOS',
+    type: 'DELETE_TODO',
     payload: id
   }
 }
 
 export const updateTodo = (todos) => {
   return {
-    type: 'UPDATE_TODOS',
+    type: 'UPDATE_TODO',
     payload: todos
   }
 }
@@ -38,7 +38,7 @@ export const fetchTodos = () => {
   }
 }
 
-export const fetchPostTodos = (newContent) => {
+export const fetchPostTodo = (newContent) => {
   return (dispatch) => {
     fetch('http://localhost:3004/todos', {
       method: 'POST',
@@ -56,7 +56,7 @@ export const fetchPostTodos = (newContent) => {
   }
 }
 
-export const fetchPutTodos = (id, newContent, newCompleted) => {
+export const fetchPutTodo = (id, newContent, newCompleted) => {
   return (dispatch) => {
     fetch(`http://localhost:3004/todos/${id}`, {
       method: 'PUT',
@@ -74,7 +74,7 @@ export const fetchPutTodos = (id, newContent, newCompleted) => {
   }
 }
 
-export const fetchDeleteTodos = (id) => {
+export const fetchDeleteTodo = (id) => {
   return (dispatch) => {
     fetch(`http://localhost:3004/todos/${id}`, {
       method: 'DELETE'

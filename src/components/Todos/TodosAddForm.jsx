@@ -9,7 +9,7 @@ const style = {
   }
 }
 
-import { fetchPostTodos } from '../../actions'
+import { fetchPostTodo } from '../../actions'
 
 class TodosAddForm extends Component {
   constructor () {
@@ -38,7 +38,7 @@ class TodosAddForm extends Component {
         onSubmit={e => {
           e.preventDefault();
           this.handleSubmit();
-          return this.props.fetchPostTodos(this.state.text)
+          return this.props.fetchPostTodo(this.state.text)
         }}
       >
         <input
@@ -59,7 +59,7 @@ class TodosAddForm extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPostTodos: (newTodo) => dispatch(fetchPostTodos(newTodo))
+  fetchPostTodo: (newTodo) => dispatch(fetchPostTodo(newTodo))
 })
 
 export default connect(null, mapDispatchToProps)(TodosAddForm)
