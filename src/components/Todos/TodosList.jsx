@@ -27,19 +27,26 @@ class TodosList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentId: 0
+      currentContentId: 0,
+      currentCompletedId: 0
     }
     this.handleContentClick = this.handleContentClick.bind(this)
   }
 
   handleContentClick(id) {
     this.setState({
-      currentId: id
+      currentContentId: id
     })
     const todo = document.getElementById(`todo-${id}`)
     setTimeout(() => {
       todo.children[1].children[0].children[0].children[0].focus()
     }, 100);
+  }
+
+  handleCompletedClick(id) {
+    this.setState({
+      currentCompletedId: id
+    })
   }
 
   componentDidMount() {
@@ -73,14 +80,14 @@ class TodosList extends Component {
               </td>
               <td style={style.tdItem}>
                 <div onClick={() => this.handleContentClick(todo.id)} style={{padding: '20px 10px', height: '60px', width: '100%'}}>
-                  {todo.id === this.state.currentId
-                    ?<form onSubmit={e => { e.preventDefault() }} style={{margin:0, padding:0, marginTop: '-12px'}}>
+                  {todo.id === this.state.currentContentId
+                    ?<form onSubmit={e => e.preventDefault()} style={{margin:0, padding:0, marginTop: '-12px'}}>
                       <input
                         style={{textAlign: 'center', margin: 0, padding: 0}}
                         onBlur={(e) => {
                           this.props.fetchPutTodo(todo.id, e.target.value, todo.completed)
                           this.setState({
-                            currentId: 0
+                            currentContentId: 0
                           })
                         }}
                         defaultValue={todo.content}
@@ -94,12 +101,16 @@ class TodosList extends Component {
                 </div>
               </td>
               <td style={style.tdCheck}>
-                <form onClick={() => this.handleClick(todo.id)}>
+                <form>
                   <input
+                    onChange={(e) => {
+                      e.preventDefault()
+                      this.props.fetchPutTodo(todo.id, todo.content, !todo.completed)
+                    }}
                     id={`todo-check-${todo.id}`}
                     type="checkbox"
                     className="filled-in"
-                    defaultChecked={todo.completed ? true : ''}
+                    checked={todo.completed ? true : ''}
                   />
                   <label htmlFor={`todo-check-${todo.id}`}></label>
                 </form>
