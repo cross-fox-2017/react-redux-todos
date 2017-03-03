@@ -5,23 +5,23 @@ export const setTodos = (todos) => {
   }
 }
 
-export const addTodos = (todos) => {
+export const addTodo = (todos) => {
   return {
-    type: 'ADD_TODOS',
+    type: 'ADD_TODO',
     payload: todos
   }
 }
 
-export const deleteTodos = (id) => {
+export const deleteTodo = (id) => {
   return {
-    type: 'DELETE_TODOS',
+    type: 'DELETE_TODO',
     payload: id
   }
 }
 
-export const updateTodos = (todos) => {
+export const updateTodo = (todos) => {
   return {
-    type: 'UPDATE_TODOS',
+    type: 'UPDATE_TODO',
     payload: todos
   }
 }
@@ -38,11 +38,11 @@ export const fetchTodos = () => {
   }
 }
 
-export const fetchPostTodos = (newTodo) => {
+export const fetchPostTodo = (newContent) => {
   return (dispatch) => {
     fetch('http://localhost:3004/todos', {
       method: 'POST',
-      body: JSON.stringify({content: newTodo, completed: false}),
+      body: JSON.stringify({content: newContent, completed: false}),
       headers: {
         'Content-Type': 'application/json'
       }
@@ -50,13 +50,13 @@ export const fetchPostTodos = (newTodo) => {
       .then(response => {
         return response.json()
       })
-      .then(todos => {
-        return dispatch(addTodos(todos))
+      .then(newTodo => {
+        return dispatch(addTodo(newTodo))
       })
   }
 }
 
-export const fetchPutTodos = (id, newContent, newCompleted) => {
+export const fetchPutTodo = (id, newContent, newCompleted) => {
   return (dispatch) => {
     fetch(`http://localhost:3004/todos/${id}`, {
       method: 'PUT',
@@ -69,12 +69,12 @@ export const fetchPutTodos = (id, newContent, newCompleted) => {
         return response.json()
       })
       .then(updatedTodo => {
-        return dispatch(updateTodos(updatedTodo))
+        return dispatch(updateTodo(updatedTodo))
       })
   }
 }
 
-export const fetchDeleteTodos = (id) => {
+export const fetchDeleteTodo = (id) => {
   return (dispatch) => {
     fetch(`http://localhost:3004/todos/${id}`, {
       method: 'DELETE'
@@ -83,7 +83,7 @@ export const fetchDeleteTodos = (id) => {
         return response.json()
       })
       .then(() => {
-        return dispatch(deleteTodos(id))
+        return dispatch(deleteTodo(id))
       })
   }
 }
