@@ -13,25 +13,25 @@ const style = {
 }
 
 class TodosList extends Component {
-  constructor () {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       currentId: 0
     }
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick (event) {
-    this.setState = {
-      currentId: event.target.value
-    }
+  handleClick(id) {
+    this.setState({
+      currentId: id
+    })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.props.fetchTodos()
   }
 
-  render () {
+  render() {
     return (
       <table className='table table-bordered'>
         <thead>
@@ -57,7 +57,7 @@ class TodosList extends Component {
                 {todo.id}
               </td>
               <td style={style.th}>
-                <div>
+                <div onClick={() => this.handleClick(todo.id)}>
                   {todo.content}
                 </div>
               </td>
@@ -65,16 +65,19 @@ class TodosList extends Component {
                 <div>
                   {JSON.stringify(todo.completed)}
                 </div>
-              </td>
-              <td style={style.th}>
-                <button
-                  type='button'
-                  className='btn red darken-4'
-                  onClick={(e) => {e.preventDefault(); this.props.fetchDeleteTodos(todo.id)}}>
-                  <i className='material-icons'>delete</i>
-                </button>
-              </td>
-            </tr>
+            </td>
+            <td style={style.th}>
+              <button
+                type='button'
+                className='btn red darken-4'
+                onClick={(e) => {
+                  e.preventDefault();
+                  this.props.fetchDeleteTodos(todo.id)
+                }}>
+                <i className='material-icons'>delete</i>
+              </button>
+            </td>
+          </tr>
           ))}
         </tbody>
       </table>
