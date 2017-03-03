@@ -75,3 +75,25 @@ export const putDoneTodo = todo => {
     .then(todo => dispatch(doneTodo(todo)))
   }
 }
+
+export const editTodo = todo => (
+  {
+    type: 'EDIT_TODO',
+    payload: todo
+  }
+)
+
+export const putTodo = todo => {
+  return dispatch => {
+    fetch('http://localhost:3001/todos/'+todo.id,{
+      method: 'PUT',
+      headers: {'content-type' : 'application/json'},
+      body: JSON.stringify({
+        title: todo.title,
+        done: todo.done
+      })
+    })
+    .then(res => res.json())
+    .then(todo => dispatch(editTodo(todo)))
+  }
+}

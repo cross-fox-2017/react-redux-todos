@@ -3,12 +3,7 @@ import { postTodo } from '../actions'
 import { connect } from 'react-redux'
 
 class CreateTodoForm extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      inputTodo: ''
-    }
-  }
+  state = {inputTodo: ''}
 
   handleChange(e) {
     this.setState({

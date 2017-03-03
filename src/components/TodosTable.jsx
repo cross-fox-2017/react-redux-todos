@@ -1,27 +1,68 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTodos,deleteAsyncTodo,putDoneTodo } from '../actions'
+import { getTodos,deleteAsyncTodo,putDoneTodo,putTodo } from '../actions'
 import loading from './loading.gif'
 
 
 class TodosTable extends Component {
+  constructor(){
+    super()
+    this.state = {
+      editMode: false,
+      editItem: '',
+      currentEdit: ''
+    }
+  }
+
+  handleChange(e) {
+    this.setState({
+      currentEdit: e.target.value
+    })
+  }
+
+  handleEnter(e, todo) {
+    if (e.keyCode === 13) {
+      this.props.putTodo({
+        id: this.state.editItem,
+        title: this.state.currentEdit,
+        done: todo.done
+      })
+      this.setState({
+        editMode: false,
+        currentEdit: ''
+      })
+    }
+  }
 
   componentDidMount() {
     this.props.getTodos()
   }
 
   renderTable() {
-    return this.props.todos.map((todo,index) => {
-      return (
-        <tr key={index}>
-          <td>{todo.title}</td>
-          <td><input onChange={() => this.props.putDoneTodo(todo)} type="checkbox" checked={todo.done}/></td>
-          <td>
-            <button>EDIT</button>
-            <button onClick={() => this.props.deleteAsyncTodo(todo)}>DELETE</button>
-          </td>
-        </tr>
-      )
+    return this.props.todos.map(todo => {
+      if (this.state.editMode && this.state.editItem === todo.id) {
+        return (
+          <tr key={todo.id}>
+            <td><input onChange={this.handleChange.bind(this)} onKeyUp={(e) => this.handleEnter(e, todo)} type="text" value={this.state.currentEdit}/></td>
+            <td><input onChange={() => this.props.putDoneTodo(todo)} type="checkbox" checked={todo.done}/></td>
+            <td>
+              <button onClick={() => this.setState({editMode: false})}>EDIT</button>
+              <button onClick={() => this.props.deleteAsyncTodo(todo)}>DELETE</button>
+            </td>
+          </tr>
+        )
+      } else {
+        return (
+          <tr key={todo.id}>
+            <td onDoubleClick={() => this.setState({editMode: true, currentEdit: todo.title, editItem: todo.id})}>{todo.title}</td>
+            <td><input onChange={() => this.props.putDoneTodo(todo)} type="checkbox" checked={todo.done}/></td>
+            <td>
+              <button onClick={() => this.setState({editMode: true, currentEdit: todo.title, editItem: todo.id})}>EDIT</button>
+              <button onClick={() => this.props.deleteAsyncTodo(todo)}>DELETE</button>
+            </td>
+          </tr>
+        )
+      }
     })
   }
 
@@ -55,7 +96,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   getTodos: () => dispatch(getTodos()),
   deleteAsyncTodo: todo => dispatch(deleteAsyncTodo(todo)),
-  putDoneTodo: todo => dispatch(putDoneTodo(todo))
+  putDoneTodo: todo => dispatch(putDoneTodo(todo)),
+  putTodo: todo => dispatch(putTodo(todo))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(TodosTable)
