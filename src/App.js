@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { fetchData } from './Actions'
-import {Header, InputTodo, ItemList} from './Components'
+import {Header, InputTodo, ItemList, Footer, FilterMenu} from './Components'
 
 
 class App extends Component {
@@ -19,6 +19,8 @@ class App extends Component {
         <label>Add New Todo</label>
         <InputTodo newTodo={true}/>
         <ItemList />
+        <FilterMenu />
+        <Footer />
       </Container>
     );
   }

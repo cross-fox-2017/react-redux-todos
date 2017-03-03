@@ -26,10 +26,10 @@ class ItemList extends React.Component{
             if(!this.state.editing || this.state.editItem !== todo.id){
               let completing, label
               if(todo.completed === "true"){
-                label = <Label as='a' color='teal'><Icon name="check"></Icon> {todo.task}</Label>
+                label = <Label color='teal' size='big'><Icon name="check"></Icon> {todo.task}</Label>
                 completing = "false"
               } else {
-                label = <Label as='a'>{todo.task}</Label>
+                label = <Label size='big'>{todo.task}</Label>
                 completing = "true"
               }
               return (
