@@ -30,7 +30,7 @@ import { postData, saveEdit, deleteTask } from '../Actions'
       this.props.deleteTask(this.props.id)
     } else {
       this.props.handleEdit()
-      this.props.saveEdit(task, this.props.id)
+      this.props.saveEdit(this.props.id, task, this.props.completed)
     }
   }
   render(){

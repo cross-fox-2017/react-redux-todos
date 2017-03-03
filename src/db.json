@@ -1,23 +1,19 @@
 {
   "todos": [
     {
-      "id": 1,
       "task": "first data",
-      "completed": true
+      "completed": "false",
+      "id": 1
     },
     {
-      "id": 2,
       "task": "second data",
-      "completed": false
+      "completed": "true",
+      "id": 2
     },
     {
-      "id": 3,
       "task": "third data",
-      "completed": false
-    },
-    {
-      "task": "Sarapan",
-      "id": 5
+      "completed": "false",
+      "id": 3
     }
   ]
 }

@@ -37,13 +37,13 @@ export const deleteTask = (id) => {
     .then(()=> dispatch(deleteTodo(id)))
   }
 }
-export const saveEdit = (task, id) => {
+export const saveEdit = (id, task, completed) => {
   return (dispatch) => {
     fetch(`http://localhost:8080/todos/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type' : 'application/x-www-form-urlencoded'},
-      body: `task=${task}`
+      body: `task=${task}&completed=${completed}`
     })
     .then(task => task.json())
     .then(task => dispatch(updateTodo(task)))
