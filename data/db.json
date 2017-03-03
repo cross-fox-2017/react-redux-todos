@@ -17,30 +17,6 @@
       "title": "Belajar what is Redux Thunk?",
       "description": "Redux is something awesome!",
       "status": false
-    },
-    {
-      "title": "sdfsdfsd",
-      "description": "fsdfsdfsd",
-      "status": false,
-      "id": 4
-    },
-    {
-      "title": "wertaewr",
-      "description": "qwerqwerqwer",
-      "status": false,
-      "id": 5
-    },
-    {
-      "title": "asdfasdf",
-      "description": "asdfasdfs",
-      "status": false,
-      "id": 6
-    },
-    {
-      "title": "sdfsdf",
-      "description": "  sdfsdfsdf",
-      "status": false,
-      "id": 7
     }
   ]
 }

@@ -32,3 +32,22 @@ export const addTodos = (title, description, status) =>{
       })
     }
 }
+
+export const actionDeleteDataTodos = (id) => {
+  return{
+    type: 'DELETE_TODOS',
+    payload: id
+  }
+}
+
+export const deleteDataTodos = (id) => {
+  return (dispatch) => {
+    fetch ('http://localhost:8080/todos/'+id,{
+      method: 'DELETE'
+    })
+    .then(res => res.json())
+    .then(todos => {
+      dispatch(actionDeleteDataTodos(id))
+    })
+  }
+}

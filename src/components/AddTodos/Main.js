@@ -3,7 +3,7 @@ import '../../App.css'
 import { connect } from 'react-redux'
 import InputTodos from './InputTodos.js'
 import { Header } from '../Header/Header.js'
-import { GetAll } from '../../actions/index.js'
+import { GetAll, deleteDataTodos } from '../../actions/index.js'
 import { Table, Icon} from 'semantic-ui-react'
 
 class Main extends Component {
@@ -14,7 +14,7 @@ class Main extends Component {
     return (
       <div className='App'>
         <Header />
-        <h1>Todospedia</h1>
+        <h1>Todopedia</h1>
         <InputTodos />
           <div className='center showlisttodos'>
             <Table singleLine>
@@ -35,7 +35,7 @@ class Main extends Component {
                                   <Table.Cell>{item.title}</Table.Cell>
                                   <Table.Cell>{item.description}</Table.Cell >
                                   <Table.Cell>{item.status===false ? "false" : "true"}</Table.Cell>
-                                  <Table.Cell><a className="editTodos" href="#"><Icon name='delete' /></a><a href="#"><Icon name='edit' /></a></Table.Cell>
+                                  <Table.Cell><a onClick={()=>this.props.deleteTodos(item.id)} className="editTodos" href="#"><Icon name='delete' /></a><a href="#"><Icon name='edit' /></a></Table.Cell>
                              </Table.Row>
                            )
                          })
@@ -55,7 +55,8 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getAllData: () => dispatch(GetAll())
+  getAllData: () => dispatch(GetAll()),
+  deleteTodos: (id) => dispatch(deleteDataTodos(id))
 })
 // const mapDispatchToProps = dispatch => {
 //   return bindActionCreators({GetAll},dispatch)
