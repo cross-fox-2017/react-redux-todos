@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { List, Grid } from 'semantic-ui-react'
+import { List, Grid, Label, Icon } from 'semantic-ui-react'
 import InputTodo from './InputTodo'
 import { saveEdit } from '../Actions'
 
@@ -24,16 +24,18 @@ class ItemList extends React.Component{
         <List animated selection verticalAlign='middle'>
           {this.props.todos.map((todo, index) => {
             if(!this.state.editing || this.state.editItem !== todo.id){
-              let completing
-              if(todo.completed == "true"){
+              let completing, label
+              if(todo.completed === "true"){
+                label = <Label as='a' color='teal'><Icon name="check"></Icon> {todo.task}</Label>
                 completing = "false"
               } else {
+                label = <Label as='a'>{todo.task}</Label>
                 completing = "true"
               }
               return (
                 <List.Item key={todo.id}>
                   <List.Content>
-                    <List.Header onDoubleClick={()=>this.editMode(todo.id)} onClick={()=>this.props.saveEdit(todo.id, todo.task, completing)}>{todo.task} {todo.completed}</List.Header>
+                    <List.Header onDoubleClick={()=>this.editMode(todo.id)} onClick={()=>this.props.saveEdit(todo.id, todo.task, completing)}>{label}</List.Header>
                   </List.Content>
                 </List.Item>
               )
