@@ -65,19 +65,19 @@ class TodosList extends Component {
                 <div>
                   {JSON.stringify(todo.completed)}
                 </div>
-            </td>
-            <td style={style.th}>
-              <button
-                type='button'
-                className='btn red darken-4'
-                onClick={(e) => {
-                  e.preventDefault();
-                  this.props.fetchDeleteTodos(todo.id)
-                }}>
-                <i className='material-icons'>delete</i>
-              </button>
-            </td>
-          </tr>
+              </td>
+              <td style={style.th}>
+                <button
+                  type='button'
+                  className='btn red darken-4'
+                  onClick={e => {
+                    e.preventDefault();
+                    this.props.fetchDeleteTodos(todo.id)
+                  }}>
+                  <i className='material-icons'>delete</i>
+                </button>
+              </td>
+            </tr>
           ))}
         </tbody>
       </table>

@@ -34,17 +34,20 @@ class TodosAddForm extends Component {
 
   render () {
     return (
-      <form onSubmit={e => {
-          e.preventDefault(); 
+      <form
+        onSubmit={e => {
+          e.preventDefault();
           this.handleSubmit();
-          return this.props.fetchPostTodos(this.state.text)}}>
+          return this.props.fetchPostTodos(this.state.text)
+        }}>
         <input
           style={style.input}
           id='add'
           type='text'
           value={this.state.text}
           onChange={this.handleChange}
-          placeholder='Add to list...' />
+          placeholder='Add to list...'
+        />
         {'  '}
         <button type='submit' className='btn light-green darken-3'>
           <i className='material-icons'>add</i>
