@@ -1,9 +1,19 @@
 {
   "list": [
     {
-      "title": "tes",
-      "completed": false,
+      "title": "bangun",
+      "completed": true,
       "id": 1
+    },
+    {
+      "title": "tidur",
+      "completed": false,
+      "id": 3
+    },
+    {
+      "title": "hallo",
+      "completed": true,
+      "id": 4
     }
   ]
 }

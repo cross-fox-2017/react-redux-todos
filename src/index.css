@@ -3,3 +3,24 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.material-icons.clearBtn, .material-icons.doneBtn {
+  color: #cdcdcd;
+  cursor:pointer;
+}
+
+.material-icons.clearBtn:hover{
+  color: #f25858;
+}
+
+ /*.material-icons.doneBtn:hover {
+
+ }*/
+
+ .material-icons.clearBtn:active{
+   color: #f48484;
+ }
+
+.doneBtnAfter{
+  color: rgb(41, 230, 134);
+}
