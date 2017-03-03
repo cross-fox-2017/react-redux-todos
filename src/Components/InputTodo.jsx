@@ -15,6 +15,7 @@ import { postData, saveEdit, deleteTask } from '../Actions'
     if (e.which === 13){
       if(this.props.newTodo){
         this.props.postData(e.target.value)
+        this.setState({ text: ""})
       } else {
         this.onSave(e.target.value)
       }
