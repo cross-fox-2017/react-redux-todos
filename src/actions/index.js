@@ -51,3 +51,32 @@ export const deleteDataTodos = (id) => {
     })
   }
 }
+
+
+export const completeDataTodos = (id,title,description) => {
+  return (dispatch) => {
+    fetch('http://localhost:8080/todos/'+id,{
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({title: title, description: description, status: true})
+    })
+    .then(res => res.json())
+    .then(todos => {
+      dispatch(GetAll())
+    })
+  }
+}
+
+export const uncompleteDataTodos = (id,title,description) => {
+  return (dispatch) => {
+    fetch('http://localhost:8080/todos/'+id,{
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({title: title, description: description, status: false})
+    })
+    .then(res => res.json())
+    .then(todos => {
+      dispatch(GetAll())
+    })
+  }
+}

@@ -3,7 +3,7 @@ import '../../App.css'
 import { connect } from 'react-redux'
 import InputTodos from './InputTodos.js'
 import { Header } from '../Header/Header.js'
-import { GetAll, deleteDataTodos } from '../../actions/index.js'
+import { GetAll, deleteDataTodos, completeDataTodos, uncompleteDataTodos } from '../../actions/index.js'
 import { Table, Icon} from 'semantic-ui-react'
 
 class Main extends Component {
@@ -35,7 +35,13 @@ class Main extends Component {
                                   <Table.Cell>{item.title}</Table.Cell>
                                   <Table.Cell>{item.description}</Table.Cell >
                                   <Table.Cell>{item.status===false ? "false" : "true"}</Table.Cell>
-                                  <Table.Cell><a onClick={()=>this.props.deleteTodos(item.id)} className="editTodos" href="#"><Icon name='delete' /></a><a href="#"><Icon name='edit' /></a></Table.Cell>
+                                  <Table.Cell>
+                                    <a onClick={()=>this.props.deleteTodos(item.id)} className="actionTodos" href="#"><Icon name='delete' /></a>
+                                    {/*<a className="actionTodos" href="#"><Icon name='edit' /></a>*/}
+                                    {item.status===false
+                                      ? <a onClick={()=>this.props.completeTodos(item.id, item.title, item.description)} href="#"><Icon name='checkmark box' /></a>
+                                      :<a onClick={()=>this.props.uncompleteTodos(item.id, item.title, item.description)} href="#"><Icon name='minus circle'/></a>}
+                                  </Table.Cell>
                              </Table.Row>
                            )
                          })
@@ -56,7 +62,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => ({
   getAllData: () => dispatch(GetAll()),
-  deleteTodos: (id) => dispatch(deleteDataTodos(id))
+  deleteTodos: (id) => dispatch(deleteDataTodos(id)),
+  completeTodos: (id,title,description) => dispatch(completeDataTodos(id,title,description)),
+  uncompleteTodos: (id,title,description) => dispatch(uncompleteDataTodos(id,title,description))
 })
 // const mapDispatchToProps = dispatch => {
 //   return bindActionCreators({GetAll},dispatch)
