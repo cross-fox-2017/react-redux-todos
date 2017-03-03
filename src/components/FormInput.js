@@ -15,6 +15,9 @@ class FormInput extends React.Component {
     e.preventDefault()
 
     this.props.addTodoDispatched(this.state.inputTodo)
+    this.setState({
+      inputTodo: ''
+    })
   }
   handleChange(event){
     this.setState({
