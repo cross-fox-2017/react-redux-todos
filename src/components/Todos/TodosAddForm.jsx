@@ -39,7 +39,8 @@ class TodosAddForm extends Component {
           e.preventDefault();
           this.handleSubmit();
           return this.props.fetchPostTodos(this.state.text)
-        }}>
+        }}
+      >
         <input
           style={style.input}
           id='add'
