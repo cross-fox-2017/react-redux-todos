@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchMemos, deleteMemo, updateMemo } from '../../actions'
+import { fetchMemos, deleteMemo, updateMemo, updateComplete } from '../../actions'
 
 class Memos extends Component {
 
@@ -9,12 +9,16 @@ class Memos extends Component {
     super(props)
     this.state = {
       currentlyEditingId: 0,
-      currentlyEditingInput: ''
+      currentlyEditingInput: '',
     }
   }
 
   componentDidMount () {
     this.props.fetchMemos()
+  }
+
+  componentWillReceiveProps (nextProps) {
+    console.log(nextProps);
   }
 
   handleInputEditChange (e) {
@@ -30,8 +34,17 @@ class Memos extends Component {
           {this.props.memos
              .map((item, index) => {
                return (
-                 <li className='collection-item' key={index}>
+                <li className='collection-item' key={index}>
                    <div>
+                     <form className='completed-checkbox'>
+                       <p style={{ display: 'inline-block' }}>
+                         {item.completed}
+                         <input
+                           onChange={() => this.props.updateComplete(item.id, item.memo, item.completed)}
+                           type='checkbox'
+                           checked={item.completed === 'true' ? "checked" : ""} />
+                       </p>
+                     </form>
                      {item.id === this.state.currentlyEditingId ?
                         <form onSubmit={e => {
                                         e.preventDefault()
@@ -97,7 +110,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchMemos: () => dispatch(fetchMemos()),
     deleteMemo: (id) => dispatch(deleteMemo(id)),
-    updateMemo: (id, memo) => dispatch(updateMemo(id, memo))
+    updateMemo: (id, memo) => dispatch(updateMemo(id, memo)),
+    updateComplete: (id, memo, task) => dispatch(updateComplete(id, memo, task))
   }
 }
 

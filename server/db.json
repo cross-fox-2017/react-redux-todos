@@ -1,16 +1,14 @@
 {
   "memos": [
     {
-      "memo": "Belajar Express3",
-      "id": 1
-    },
-    {
+      "id": 2,
       "memo": "Belajar Redux",
-      "id": 2
+      "completed": "false"
     },
     {
-      "memo": "Belajar React",
-      "id": 5
+      "id": 6,
+      "memo": "Tes lagi",
+      "completed": "true"
     }
   ]
 }

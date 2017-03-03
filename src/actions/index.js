@@ -29,13 +29,44 @@ export const updateMemosSuccess = (id, memo) => {
   }
 }
 
+export const updateCompleteSuccess = (complete) => {
+  console.log(complete);
+  return {
+    type: 'UPDATE_COMPLETE_SUCCESS',
+    payload: complete
+  }
+}
+
+export const updateComplete = (id, memo, completed) => {
+
+  let isTrueSet = (completed === "true")
+  let getStatus = (isTrueSet) ? "false" : "true"
+
+  return (dispatch) => {
+    fetch('http://localhost:8080/memos/' + id, {
+      method: 'PUT',
+      body: JSON.stringify({
+        id: id,
+        memo: memo,
+        completed: getStatus
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then((complete) => dispatch(updateCompleteSuccess(complete)))
+  }
+}
+
 export const updateMemo = (id, memo) => {
   console.log('MY MEMO : ' + memo)
   return (dispatch) => {
     fetch('http://localhost:8080/memos/' + id, {
       method: 'PUT',
       body: JSON.stringify({
-        memo: memo
+        memo: memo,
+        completed: false
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -51,7 +82,8 @@ export const addMemos = (memo) => {
     fetch('http://localhost:8080/memos', {
       method: 'POST',
       body: JSON.stringify({
-        memo: memo
+        memo: memo,
+        completed: false
       }),
       headers: {
         'Content-Type': 'application/json'

@@ -11,9 +11,16 @@ export const memosReducer = (state = initialState , action) => {
     case 'UPDATE_MEMOS_SUCCESS':
       let copyState = state
       let getMemoIndex = copyState.map(item => item.id).indexOf(action.payload.id)
-      copyState.splice(getMemoIndex, 1, { id: action.payload.id, memo: action.payload.memo })
+      copyState.splice(getMemoIndex, 1, { id: action.payload.id, memo: action.payload.memo, completed: false })
       return copyState
+    case 'UPDATE_COMPLETE_SUCCESS':
+      let getStatus = String((action.payload.completed === "true"))
+      let copyStateComplete = state
+      let getMemoIndexComplete = copyStateComplete.map(item => item.id).indexOf(action.payload.id)
+      copyStateComplete.splice(getMemoIndexComplete, 1, { id: action.payload.id, memo: action.payload.memo, completed: getStatus})
+      return copyStateComplete
     default:
+
       return state
   }
 }

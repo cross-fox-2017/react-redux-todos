@@ -60,3 +60,23 @@ footer.page-footer {
 .secondary-content {
   margin-right: 25px;
 }
+
+[type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+    position: static;
+    left: 0px;
+    opacity: 1;
+    font-size: 26px;
+    cursor: pointer;
+  }
+
+.completed-checkbox {
+  display: inline-block;
+  position: relative;
+  left: 67%;
+  bottom:2px;
+}
+
+input[type=checkbox] {
+
+
+}
