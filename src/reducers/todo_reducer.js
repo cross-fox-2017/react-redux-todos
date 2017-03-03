@@ -9,8 +9,9 @@ const todoReducer = (state = initialState, action) => {
     case 'REMOVE_TODO':
       return state.filter( xxx => xxx !== action.payload);
     case 'DONE_TODO':
-      console.log(action.payload);
-      return state.map((x)=> x.id !== action.payload.id ? x : {...x,completed:!x.completed})
+      return state.map((todo)=> todo.id !== action.payload.id ? todo : {...todo, completed:!todo.completed})
+    case 'UPDATE_TODO':
+      return state.map((todo)=> todo.id !== action.payload.id ? todo : Object.assign({}, todo, { title: action.payload.title }) )
     default:
       return state;
   }

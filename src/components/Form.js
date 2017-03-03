@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 class Form extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      currentTitle: ''
-    }
+  state = {
+    currentTitle: ''
   }
 
   handleTitleChange(e){
