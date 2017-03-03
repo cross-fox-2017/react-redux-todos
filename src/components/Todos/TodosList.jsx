@@ -8,7 +8,13 @@ const style = {
     color: '#558b2f'
   },
   th: {
-    textAlign: 'center'
+    textAlign: 'center',
+    padding: 10
+  },
+  tdItem: {
+    textAlign: 'center',
+    padding: 0,
+    width: '45%'
   }
 }
 
@@ -16,23 +22,19 @@ class TodosList extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentId: 0,
-      currentContent: ''
+      currentId: 0
     }
     this.handleClick = this.handleClick.bind(this)
-    this.handleChange = this.handleChange.bind(this)
   }
 
   handleClick(id) {
     this.setState({
       currentId: id
     })
-  }
-
-  handleChange (event) {
-    this.setState({
-      currentContent: event.target.value
-    })
+    const todo = document.getElementById(`todo-${id}`)
+    setTimeout(() => {
+      todo.children[1].children[0].children[0].children[0].focus()
+    }, 100);
   }
 
   componentDidMount() {
@@ -60,19 +62,17 @@ class TodosList extends Component {
         </thead>
         <tbody>
           {this.props.todos.map((todo) => (
-            <tr key={todo.id}>
+            <tr id={`todo-${todo.id}`} key={todo.id}>
               <td style={style.th}>
                 {todo.id}
               </td>
-              <td style={style.th}>
-                <div
-                  onClick={() => this.handleClick(todo.id)}
-                >
+              <td style={style.tdItem}>
+                <div onClick={() => this.handleClick(todo.id)} style={{padding: '20px 10px', height: '60px', width: '100%'}}>
                   {todo.id === this.state.currentId
-                    ?<form onSubmit={e => { e.preventDefault() }}>
+                    ?<form onSubmit={e => { e.preventDefault() }} style={{margin:0, padding:0, marginTop: '-12px'}}>
                       <input
-                        onBlur={e => {
-                          e.preventDefault()
+                        style={{textAlign: 'center', margin: 0, padding: 0}}
+                        onBlur={(e) => {
                           this.props.fetchPutTodos(todo.id, e.target.value, todo.completed)
                           this.setState({
                             currentId: 0
@@ -81,15 +81,18 @@ class TodosList extends Component {
                         defaultValue={todo.content}
                       />
                     </form>
-                    :todo.content
+                    :
+                    <div style={{ width: '100%'}}>
+                      { todo.content }
+                    </div>
                   }
                 </div>
               </td>
               <td style={style.th}>
-                <div
-                  onClick={() => this.handleClick(todo.id)}
-                >
-                  {JSON.stringify(todo.completed)}
+                <div>
+                  <form>
+                    <input type="checked" defaultValue={JSON.stringify(todo.completed)}></input>
+                  </form>
                 </div>
               </td>
               <td style={style.th}>
