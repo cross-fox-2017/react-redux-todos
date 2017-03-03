@@ -1,0 +1,16 @@
+{
+  "todos": [
+    {
+      "title": "Belajar what is React?",
+      "description": "React is something good!",
+      "status": false,
+      "id": 1
+    },
+    {
+      "title": "Belajar what is Redux?",
+      "description": "Redux is something cool!",
+      "status": true,
+      "id": 2
+    }
+  ]
+}
