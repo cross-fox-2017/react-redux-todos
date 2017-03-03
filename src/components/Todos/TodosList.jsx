@@ -68,6 +68,13 @@ class TodosList extends Component {
       currentContentId: 0
     }
     this.handleContentClick = this.handleContentClick.bind(this)
+    this.handleContentChange = this.handleContentChange.bind(this)
+  }
+
+  handleContentChange(event) {
+    this.setState({
+      currentContentText: event.target.value
+    })
   }
 
   handleContentClick(id) {
@@ -113,7 +120,16 @@ class TodosList extends Component {
                 <div onClick={() => this.handleContentClick(todo.id)} style={style.divContent}>
                   {todo.id === this.state.currentContentId
                     ?
-                    <form onSubmit={e => e.preventDefault()} style={style.formContent}>
+                    <form
+                      style={style.formContent}
+                      onSubmit={e => {
+                        e.preventDefault()
+                        this.props.fetchPutTodo(todo.id, this.state.currentContentText, todo.completed)
+                        this.setState({
+                          currentContentId: 0
+                        })
+                      }}
+                    >
                       <input
                         style={style.inputContent}
                         onBlur={(e) => {
@@ -122,6 +138,7 @@ class TodosList extends Component {
                             currentContentId: 0
                           })
                         }}
+                        onChange={this.handleContentChange}
                         defaultValue={todo.content}
                       />
                     </form>
@@ -136,21 +153,21 @@ class TodosList extends Component {
                     e.preventDefault()
                     this.props.fetchPutTodo(todo.id, todo.content, !todo.completed)
                   }}
-                  id={`todo-check-${todo.id}`}
+                  checked={todo.completed ? true : ''}
                   type="checkbox"
                   className="filled-in"
-                  checked={todo.completed ? true : ''}
+                  id={`todo-check-${todo.id}`}
                 />
-              <label style={style.labelCheck} htmlFor={`todo-check-${todo.id}`}></label>
+                <label style={style.labelCheck} htmlFor={`todo-check-${todo.id}`}></label>
               </td>
               <td style={style.thAction}>
                 <button
-                  type='button'
-                  className='btn red darken-4'
                   onClick={e => {
                     e.preventDefault();
                     this.props.fetchDeleteTodo(todo.id)
                   }}
+                  type='button'
+                  className='btn red darken-4'
                 >
                   <i className='material-icons'>delete</i>
                 </button>
