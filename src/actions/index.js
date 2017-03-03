@@ -19,6 +19,13 @@ export const deleteTodos = (id) => {
   }
 }
 
+export const updateTodos = (todos) => {
+  return {
+    type: 'UPDATE_TODOS',
+    payload: todos
+  }
+}
+
 export const fetchTodos = () => {
   return (dispatch) => {
     fetch('http://localhost:3004/todos')
@@ -45,6 +52,24 @@ export const fetchPostTodos = (newTodo) => {
       })
       .then(todos => {
         return dispatch(addTodos(todos))
+      })
+  }
+}
+
+export const fetchPutTodos = (id, newContent, newCompleted) => {
+  return (dispatch) => {
+    fetch(`http://localhost:3004/todos/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify({content: newContent, completed: newCompleted}),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(updatedTodo => {
+        return dispatch(updateTodos(updatedTodo))
       })
   }
 }

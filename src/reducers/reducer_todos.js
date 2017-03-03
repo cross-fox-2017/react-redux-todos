@@ -6,6 +6,8 @@ const TodosReducer = (state = [] , action) => {
       return state.concat(action.payload)
     case 'DELETE_TODOS':
       return state.filter(todo => todo.id !== action.payload)
+    case 'UPDATE_TODOS':
+      return state.map(todo => todo.id === action.payload.id ? Object.assign({}, action.payload) : Object.assign({}, todo))
     default:
       return state
   }

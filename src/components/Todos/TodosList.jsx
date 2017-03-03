@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
-import { fetchTodos, fetchDeleteTodos, fetchUpdateTodos } from '../../actions'
+import { fetchTodos, fetchDeleteTodos, fetchPutTodos } from '../../actions'
 
 const style = {
   tr: {
@@ -20,21 +20,19 @@ class TodosList extends Component {
       currentContent: ''
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
-  handleClick(id, content) {
+  handleClick(id) {
     this.setState({
-      currentId: id,
-      currentContent: content
+      currentId: id
     })
   }
 
-  handleDoubleClick() {
-    return (
-      <form>
-        <input>test</input>
-      </form>
-    )
+  handleChange (event) {
+    this.setState({
+      currentContent: event.target.value
+    })
   }
 
   componentDidMount() {
@@ -68,12 +66,18 @@ class TodosList extends Component {
               </td>
               <td style={style.th}>
                 <div
-                  onClick={() => this.handleClick(todo.id, todo.content)}
+                  onClick={() => this.handleClick(todo.id)}
                 >
                   {todo.id === this.state.currentId
-                    ?<form>
+                    ?<form onSubmit={e => { e.preventDefault() }}>
                       <input
-                        onBlur={e => {console.log(e.target.value);}}
+                        onBlur={e => {
+                          e.preventDefault()
+                          this.props.fetchPutTodos(todo.id, e.target.value, todo.completed)
+                          this.setState({
+                            currentId: 0
+                          })
+                        }}
                         defaultValue={todo.content}
                       />
                     </form>
@@ -83,7 +87,7 @@ class TodosList extends Component {
               </td>
               <td style={style.th}>
                 <div
-                  onClick={() => this.handleClick(todo.id, todo.content)}
+                  onClick={() => this.handleClick(todo.id)}
                 >
                   {JSON.stringify(todo.completed)}
                 </div>
@@ -117,7 +121,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchTodos: () => dispatch(fetchTodos()),
   fetchDeleteTodos: (id) => dispatch(fetchDeleteTodos(id)),
-  fetchUpdateTodos: (content) => dispatch(fetchUpdateTodos(content))
+  fetchPutTodos: (id, content, completed) => dispatch(fetchPutTodos(id, content, completed))
 })
 
 TodosList.propTypes = {
