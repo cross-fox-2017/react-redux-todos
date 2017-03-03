@@ -10,7 +10,7 @@ const todosReducer = (state = initialState, action) => {
     case 'DONE_TODO':
       return state.map(todo => todo.id === action.payload.id ? {...todo,done:!todo.done} :todo)
     case 'EDIT_TODO':
-      return state.map(todo => todo.id === action.payload.id ? {...todo,title:action.payload.title} :todo)
+      return state.map(todo => todo.id === action.payload.id ? Object.assign({}, todo, {title: action.payload.title}) :todo)
     default:
       return state;
   }
