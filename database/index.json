@@ -1,24 +1,9 @@
 {
   "todos": [
     {
-      "title": "sini",
-      "done": false,
+      "title": "kedua",
+      "done": true,
       "id": 1
-    },
-    {
-      "title": "liat",
-      "done": false,
-      "id": 2
-    },
-    {
-      "title": "radit",
-      "done": false,
-      "id": 3
-    },
-    {
-      "title": "PA",
-      "done": false,
-      "id": 4
     }
   ]
 }

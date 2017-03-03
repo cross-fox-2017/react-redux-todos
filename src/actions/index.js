@@ -6,12 +6,12 @@ export const showAllTodos = todos => (
 )
 
 export const getTodos = () => {
-  return (dispatch) => {
+  return dispatch => {
     setTimeout(() => {
       fetch('http://localhost:3001/todos')
       .then(res => res.json())
       .then(todos => dispatch(showAllTodos(todos)))
-    },3000)
+    },1000)
   }
 }
 
@@ -22,8 +22,8 @@ export const createTodo = todo => (
   }
 )
 
-export const postTodo = (todo) => {
-  return (dispatch) => {
+export const postTodo = todo => {
+  return dispatch => {
     fetch('http://localhost:3001/todos',{
       method: 'POST',
       headers: {'content-type' : 'application/json'},
@@ -44,13 +44,34 @@ export const deleteTodo = todo => (
   }
 )
 
-export const deletexTodo = (todo) => {
-  console.log(todo);
-  return (dispatch) => {
+export const deleteAsyncTodo = todo => {
+  return dispatch => {
     fetch('http://localhost:3001/todos/'+todo.id,{
       method: 'DELETE'
     })
     .then(res => res.json())
     .then(todoKosong => dispatch(deleteTodo(todo)))
+  }
+}
+
+export const doneTodo = todo => (
+  {
+    type: 'DONE_TODO',
+    payload: todo
+  }
+)
+
+export const putDoneTodo = todo => {
+  return dispatch => {
+    fetch('http://localhost:3001/todos/'+todo.id,{
+      method: 'PUT',
+      headers: {'content-type' : 'application/json'},
+      body: JSON.stringify({
+        title: todo.title,
+        done: !todo.done
+      })
+    })
+    .then(res => res.json())
+    .then(todo => dispatch(doneTodo(todo)))
   }
 }

@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getTodos,deletexTodo } from '../actions'
+import { getTodos,deleteAsyncTodo,putDoneTodo } from '../actions'
 import loading from './loading.gif'
 
 
 class TodosTable extends Component {
+
   componentDidMount() {
     this.props.getTodos()
   }
 
   renderTable() {
-    return this.props.todos.map((todo, index) => {
+    return this.props.todos.map((todo,index) => {
       return (
         <tr key={index}>
           <td>{todo.title}</td>
-          <td><input type="checkbox" /></td>
-          <td><button>EDIT</button><button onClick={() => this.props.deletexTodo(todo)}>DELETE</button></td>
+          <td><input onChange={() => this.props.putDoneTodo(todo)} type="checkbox" checked={todo.done}/></td>
+          <td>
+            <button>EDIT</button>
+            <button onClick={() => this.props.deleteAsyncTodo(todo)}>DELETE</button>
+          </td>
         </tr>
       )
     })
@@ -50,7 +54,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   getTodos: () => dispatch(getTodos()),
-  deletexTodo: (todo) => dispatch(deletexTodo(todo))
+  deleteAsyncTodo: todo => dispatch(deleteAsyncTodo(todo)),
+  putDoneTodo: todo => dispatch(putDoneTodo(todo))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(TodosTable)
