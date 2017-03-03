@@ -4,14 +4,16 @@ import { connect } from 'react-redux'
 import { fetchTodos, fetchDeleteTodo, fetchPutTodo } from '../../actions'
 
 const style = {
-  tr: {
-    color: '#558b2f'
-  },
   th: {
+    color: '#558b2f',
     textAlign: 'center',
     padding: 10
   },
-  tdItem: {
+  tdId: {
+    textAlign: 'center',
+    padding: 10
+  },
+  tdContent: {
     textAlign: 'center',
     padding: 0,
     width: '45%'
@@ -19,8 +21,22 @@ const style = {
   tdCheck: {
     textAlign: 'center',
     padding: 0
+  },
+  divContent: {
+    padding: '20px 10px',
+    height: '60px',
+    width: '100%'
+  },
+  formContent: {
+    margin:0,
+    padding:0,
+    marginTop: '-12px'
+  },
+  inputContent: {
+    textAlign: 'center',
+    margin: 0,
+    padding: 0
   }
-
 }
 
 class TodosList extends Component {
@@ -57,7 +73,7 @@ class TodosList extends Component {
     return (
       <table className='table table-bordered'>
         <thead>
-          <tr style={style.tr}>
+          <tr>
             <th style={style.th}>
               No
             </th>
@@ -75,15 +91,15 @@ class TodosList extends Component {
         <tbody>
           {this.props.todos.map((todo) => (
             <tr id={`todo-${todo.id}`} key={todo.id}>
-              <td style={style.th}>
+              <td style={style.tdId}>
                 {todo.id}
               </td>
-              <td style={style.tdItem}>
-                <div onClick={() => this.handleContentClick(todo.id)} style={{padding: '20px 10px', height: '60px', width: '100%'}}>
+              <td style={style.tdContent}>
+                <div onClick={() => this.handleContentClick(todo.id)} style={style.divContent}>
                   {todo.id === this.state.currentContentId
-                    ?<form onSubmit={e => e.preventDefault()} style={{margin:0, padding:0, marginTop: '-12px'}}>
+                    ?<form onSubmit={e => e.preventDefault()} style={style.formContent}>
                       <input
-                        style={{textAlign: 'center', margin: 0, padding: 0}}
+                        style={style.inputContent}
                         onBlur={(e) => {
                           this.props.fetchPutTodo(todo.id, e.target.value, todo.completed)
                           this.setState({
@@ -94,7 +110,7 @@ class TodosList extends Component {
                       />
                     </form>
                     :
-                    <div style={{ width: '100%'}}>
+                    <div>
                       { todo.content }
                     </div>
                   }
@@ -140,7 +156,6 @@ const mapStateToProps = (state) => {
     todos: state.todos
   }
 }
-
 
 // yg kiri: fungsi kita sendiri dengan nama bebas
 // yg kanan: hasil import dari action

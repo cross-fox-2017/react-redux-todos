@@ -12,18 +12,23 @@
     },
     {
       "content": "make todo with react and redux",
-      "completed": false,
+      "completed": true,
       "id": 3
     },
     {
       "content": "refactor components",
-      "completed": false,
+      "completed": true,
       "id": 4
     },
     {
-      "content": "add CRUD features",
+      "content": "add CRUD feature",
       "completed": false,
       "id": 5
+    },
+    {
+      "content": "main kartu",
+      "completed": false,
+      "id": 6
     }
   ]
 }
