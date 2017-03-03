@@ -29,8 +29,8 @@ class FormInput extends React.Component {
         <div className="col s3">
         </div>
         <div className="input-field col s6">
-        <input placeholder="input a todo..." id="first_name2" onChange={this.handleChange.bind(this)} value={this.state.inputTodo} type="text" className="validate" />
-        <label className="active" htmlFor="first_name2">First Name</label>
+        <input placeholder="input a todo..." id="todo" onChange={this.handleChange.bind(this)} value={this.state.inputTodo} type="text" className="validate" />
+        <label className="active" htmlFor="todo">INPUT A NEW TODO</label>
         </div>
         <div className="col s3">
         </div>

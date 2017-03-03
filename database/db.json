@@ -1,23 +1,13 @@
 {
   "todos": [
     {
-      "id": 7,
-      "todo": "Jojoba",
+      "id": 1,
+      "todo": "yeesss",
       "done": false
     },
     {
-      "id": 8,
-      "todo": "Nonton film Bajakan",
-      "done": true
-    },
-    {
-      "todo": "nambah",
-      "done": false,
-      "id": 10
-    },
-    {
-      "id": 11,
-      "todo": "heboh",
+      "id": 2,
+      "todo": "adsdsd",
       "done": false
     }
   ]

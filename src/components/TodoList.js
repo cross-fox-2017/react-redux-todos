@@ -3,6 +3,7 @@ import TodoItem from './TodoItem.js'
 import {connect} from 'react-redux'
 // import {bindActionCreators} from 'redux'
 import {fetchTodo} from '../actions/index.js'
+import load from '../load.gif'
 class TodoList extends React.Component {
 
  componentDidMount(){
@@ -10,21 +11,30 @@ class TodoList extends React.Component {
  }
 
 render(){
-  return (
-    <div>
-    {
-      this.props.todo.map((item) => {
-        return(
-          <TodoItem key={item.id} {...item}/>
-        )
-      })
-    }
-    </div>
-  )
+  if (this.props.todo.length == 0) {
+    return(
+      <img src={load}/>
+    )
+  } else {
+    return (
+      <div>
+        <h1>YOUR TODO LIST: </h1>
+      {
+        this.props.todo.map((item) => {
+        console.log(item);
+          return(
+            <TodoItem key={item.id} {...item}/>
+          )
+        })
+      }
+      </div>
+    )
+  }
 
-}
 
-}
+} // render
+
+} // class
 
 const toProp = (state) => {
   return {

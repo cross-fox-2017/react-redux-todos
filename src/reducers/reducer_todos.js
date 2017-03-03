@@ -6,7 +6,7 @@ export default (state=[] , action) => {
       return action.payload
       break;
     case 'ADD_TODO' :
-    console.log(state);
+
       return [...state, action.payload]
       break;
     case 'DELETE_TODO' :
@@ -14,8 +14,10 @@ export default (state=[] , action) => {
       return state.filter((x)=> x.id !== action.payload)
       break;
     case 'DONE_TODO' :
-    console.log(state);
       return state.map((todo) => todo.id !== action.payload.id ? todo : {...todo, done:!todo.done})
+      break;
+    case 'UPDATE_TODO' :
+      return state.map((todo) => todo.id !== action.payload.id ? todo : {...todo, todo:action.payload.todo})
       break;
     default:
       return state

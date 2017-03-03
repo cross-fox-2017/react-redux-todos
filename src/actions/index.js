@@ -32,6 +32,12 @@ export const doneTodo = (todo)=>{
  }
 }
 
+export const updateTodo = (todo)=>{
+ return {
+   type:'UPDATE_TODO',
+   payload: todo
+ }
+}
 
 export const fetchTodo = () => {
   return (dispatch) => {
@@ -39,7 +45,7 @@ export const fetchTodo = () => {
       fetch('http://localhost:3005/todos')
       .then(res => res.json())
       .then(todos => dispatch(actionFetch(todos)))
-    },10)
+    },3000)
   }
 }
 
@@ -47,7 +53,8 @@ export const addTodox = (todo) => {
 
   return (dispatch) => {
     setTimeout(()=> {
-      fetch('http://localhost:3005/todos',{
+      fetch('http://localhost:3005/todos',
+      {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
@@ -90,6 +97,25 @@ export const doneTodox = (todo) => {
       })
       .then(res => res.json())
       .then(todos => dispatch(doneTodo(todos)))
+    },1)
+  }
+}
+
+export const updateTodox = (id,todo,done) => {
+
+  return (dispatch) => {
+    setTimeout(()=> {
+      fetch('http://localhost:3005/todos/'+id,{
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          id:id,
+          todo:todo,
+          done: done
+        })
+      })
+      .then(res => res.json())
+      .then(todos => dispatch(updateTodo(todos)))
     },1)
   }
 }
