@@ -1,0 +1,29 @@
+{
+  "todos": [
+    {
+      "content": "install react",
+      "completed": true,
+      "id": 1
+    },
+    {
+      "content": "install redux",
+      "completed": true,
+      "id": 2
+    },
+    {
+      "content": "make todo with react and redux",
+      "completed": false,
+      "id": 3
+    },
+    {
+      "content": "refactor components",
+      "completed": false,
+      "id": 4
+    },
+    {
+      "content": "add CRUD features",
+      "completed": false,
+      "id": 5
+    }
+  ]
+}
