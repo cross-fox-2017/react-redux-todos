@@ -46,8 +46,6 @@ class List extends Component {
         title: this.state.currentTitle,
         completed: list.completed
       })
-      console.log(this.props.listTodo);
-      console.log(list.completed);
       this.setState({
         updateMode: false,
         currentTitle: ''
@@ -93,8 +91,8 @@ class List extends Component {
             <td>
               <b>
                 { (list.completed)
-                  ? <strike onDoubleClick={ () => this.setState({updateMode: true, currentTitle: list.title, updateID: list.id}) } className="strike title">{list.title}</strike>
-                  : <span onDoubleClick={ () => this.setState({updateMode: true, currentTitle: list.title, updateID: list.id}) } className="title">{list.title}</span> }
+                  ? <strike onClick={ () => this.setState({updateMode: true, currentTitle: list.title, updateID: list.id}) } className="strike title">{list.title}</strike>
+                  : <span onClick={ () => this.setState({updateMode: true, currentTitle: list.title, updateID: list.id}) } className="title">{list.title}</span> }
               </b>
             </td>
             <td>
