@@ -1,0 +1,7 @@
+export const ADD_TODO = 'ADD_TODO'
+export const FETCH_DATA = 'FETCH_DATA'
+export const USER_INPUT = 'USER_INPUT'
+export const UPDATE_TODO = 'UPDATE_TODO'
+export const DELETE_TODO = 'DELETE_TODO'
+export const CLEAR_COMPLETED = 'CLEAR_COMPLETED'
+export const COMPLETE_ALL = 'COMPLETE_ALL'

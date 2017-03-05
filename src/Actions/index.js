@@ -1,16 +1,18 @@
+import * as types from '../Constants'
+
 //CRUD ACTION
-export const addTodo = (task) => ({type: 'ADD_TODO',task})
-export const getData = (todos) => ({type: 'FETCH_DATA', todos})
-export const handleInput = (input) => ({type: 'USER_INPUT', input})
-export const updateTodo = (task) => ({type: 'UPDATE_TODO', task})
-export const deleteTodo = (id) => ({type: 'DELETE_TODO', id})
+export const addTodo = (task) => ({type: types.ADD_TODO,task})
+export const getData = (todos) => ({type: types.FETCH_DATA, todos})
+export const handleInput = (input) => ({type: types.USER_INPUT, input})
+export const updateTodo = (task) => ({type: types.UPDATE_TODO, task})
+export const deleteTodo = (id) => ({type: types.DELETE_TODO, id})
+export const clearComplete = () => ({type: types.CLEAR_COMPLETED})
+export const completeAll = () => ({type: types.COMPLETE_ALL})
 
 //Filter
 export const showAll = () => ({type: 'SHOW_ALL'})
 export const showCompleted = () => ({type: 'SHOW_COMPLETED'})
 export const showActive = () => ({type: 'SHOW_ACTIVE'})
-export const clearComplete = () => ({type: 'CLEAR_COMPLETE'})
-export const completeAll = () => ({type: 'COMPLETE_ALL'})
 
 //FETCHING
 export const deleteTask = (id) => {

@@ -10,20 +10,20 @@ export class FilterMenu extends React.Component {
     this.setState({ activeItem: name })
     switch (name) {
       case 'SHOW_ALL':
-
+        this.props.showAll()
         break;
       case 'SHOW_COMPLETED':
-
+        this.props.showCompleted()
         break;
       case 'SHOW_ACTIVE':
-
+        this.props.showActive()
         break;
-      case 'COMPLETE_ALL':
-
-        break;
-      case 'CLEAR_COMPLETE':
-
-        break;
+      // case 'COMPLETE_ALL':
+      //
+      //   break;
+      // case 'CLEAR_COMPLETE':
+      //
+      //   break;
       default:
 
     }
@@ -50,7 +50,7 @@ export class FilterMenu extends React.Component {
           content='Active'
           onClick={this.handleItemClick}
         />
-        <Menu.Menu position='right'>
+      {/*<Menu.Menu position='right'>
           <Menu.Item
             name='CLEAR_COMPLETE'
             active={activeItem === 'CLEAR_COMPLETE'}
@@ -63,7 +63,7 @@ export class FilterMenu extends React.Component {
             content='Complete All'
             onClick={this.handleItemClick}
           />
-        </Menu.Menu>
+        </Menu.Menu>*/}
       </Menu>
     )
   }
