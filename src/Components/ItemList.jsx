@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { List, Grid, Label, Icon } from 'semantic-ui-react'
 import InputTodo from './InputTodo'
-import { saveEdit } from '../Actions'
+import { saveEdit, showAll, showActive, showCompleted } from '../Actions'
 
 class ItemList extends React.Component{
   state = {
     editing: false,
-    editItem: false
+    editItem: false,
   }
   editMode(id){
     // console.log(e.target.firstChild.data)
@@ -51,14 +51,28 @@ class ItemList extends React.Component{
   }
 }
 
+const getVisibility = (todos, filter) => {
+  switch (filter) {
+    case 'SHOW_ALL':
+      return todos
+    case 'SHOW_ACTIVE':
+      return todos.filter(todo => todo.completed === "false")
+    case 'SHOW_COMPLETED':
+      return todos.filter(todo => todo.completed === "true")
+    default:
+    console.log('err');
+      return new Error ('wrong filter :' +filter)
+  }
+}
+
 const mapStateToProps = (state) => {
   return {
-    todos: state.todos
+    todos: getVisibility(state.todos, state.filter)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({saveEdit}, dispatch)
+  return bindActionCreators({saveEdit, showAll, showActive, showCompleted}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemList)

@@ -1,11 +1,11 @@
-export default (state = 'show_all', action) => {
+export default (state = 'SHOW_ALL', action) => {
   switch (action.type) {
     case 'SHOW_ALL':
-      return 'show_all'
+      return 'SHOW_ALL'
     case 'SHOW_COMPLETED':
-      return 'show_completed'
+      return 'SHOW_COMPLETED'
     case 'SHOW_ACTIVE':
-      return 'show_active'
+      return 'SHOW_ACTIVE'
     default:
       return state
   }

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { showAll, showCompleted, showActive, clearComplete, completeAll } from '../Actions'
 
-export class FilterMenu extends React.Component {
+class FilterMenu extends React.Component {
   state = { activeItem: 'SHOW_ALL' }
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name })
@@ -36,32 +36,32 @@ export class FilterMenu extends React.Component {
           name='SHOW_ALL'
           active={activeItem === 'SHOW_ALL'}
           content='All'
-          onClick={this.handleItemClick}
+          onClick={this.handleItemClick.bind(this)}
         />
         <Menu.Item
           name='SHOW_COMPLETED'
           active={activeItem === 'SHOW_COMPLETED'}
           content='Completed'
-          onClick={this.handleItemClick}
+          onClick={this.handleItemClick.bind(this)}
         />
         <Menu.Item
           name='SHOW_ACTIVE'
           active={activeItem === 'SHOW_ACTIVE'}
           content='Active'
-          onClick={this.handleItemClick}
+          onClick={this.handleItemClick.bind(this)}
         />
       {/*<Menu.Menu position='right'>
           <Menu.Item
             name='CLEAR_COMPLETE'
             active={activeItem === 'CLEAR_COMPLETE'}
             content='Clear Complete'
-            onClick={this.handleItemClick}
+            onClick={this.handleItemClick.bind(this)}
           />
           <Menu.Item
             name='COMPLETE_ALL'
             active={activeItem === 'COMPLETE_ALL'}
             content='Complete All'
-            onClick={this.handleItemClick}
+            onClick={this.handleItemClick.bind(this)}
           />
         </Menu.Menu>*/}
       </Menu>

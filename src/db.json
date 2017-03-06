@@ -2,12 +2,12 @@
   "todos": [
     {
       "task": "second test",
-      "completed": "true",
+      "completed": "false",
       "id": 2
     },
     {
       "task": "fourth data apa",
-      "completed": "false",
+      "completed": "true",
       "id": 4
     },
     {
@@ -22,7 +22,7 @@
     },
     {
       "task": "OKE aja deh",
-      "completed": "true",
+      "completed": "false",
       "id": 7
     },
     {
