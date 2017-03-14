@@ -7,8 +7,8 @@
     },
     {
       "id": 6,
-      "memo": "Tes lagi",
-      "completed": "true"
+      "memo": "Belajar React",
+      "completed": "false"
     }
   ]
 }
