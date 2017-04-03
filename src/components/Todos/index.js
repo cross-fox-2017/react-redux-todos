@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MemoList from './memoList'
+import MemoList from './memos'
 import MemoForm from './memoForm'
 
 class Todos extends Component {

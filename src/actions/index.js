@@ -60,7 +60,7 @@ export const updateComplete = (id, memo, completed) => {
 }
 
 export const updateMemo = (id, memo) => {
-  console.log('MY MEMO : ' + memo)
+  console.log('ACTION: ' + memo)
   return (dispatch) => {
     fetch('http://localhost:3004/memos/' + id, {
       method: 'PUT',
