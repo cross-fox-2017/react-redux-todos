@@ -9,6 +9,11 @@
       "id": 6,
       "memo": "Belajar React",
       "completed": "false"
+    },
+    {
+      "memo": "Belajar RxJS",
+      "completed": "false",
+      "id": 7
     }
   ]
 }

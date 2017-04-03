@@ -1,3 +1,17 @@
+# React Redux Todos
+
+Build my own simple todos app using react & redux using [JSON Server](https://github.com/typicode/json-server). (A fake REST API for front end developers).
+
+## Getting Started
+```
+npm install -g json-server
+react-redux-todos $ cd server
+react-redux-todos/server $ json-server --watch db.json --port 3004
+
+react-redux-todos $ npm install
+react-redux-todos $ npm start
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

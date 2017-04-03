@@ -43,7 +43,7 @@ export const updateComplete = (id, memo, completed) => {
   let getStatus = (isTrueSet) ? "false" : "true"
 
   return (dispatch) => {
-    fetch('http://ec2-35-164-103-220.us-west-2.compute.amazonaws.com:3000/memos/' + id, {
+    fetch('http://localhost:3004/memos/' + id, {
       method: 'PUT',
       body: JSON.stringify({
         id: id,
@@ -62,7 +62,7 @@ export const updateComplete = (id, memo, completed) => {
 export const updateMemo = (id, memo) => {
   console.log('MY MEMO : ' + memo)
   return (dispatch) => {
-    fetch('http://ec2-35-164-103-220.us-west-2.compute.amazonaws.com:3000/memos/' + id, {
+    fetch('http://localhost:3004/memos/' + id, {
       method: 'PUT',
       body: JSON.stringify({
         memo: memo,
@@ -79,7 +79,7 @@ export const updateMemo = (id, memo) => {
 
 export const addMemos = (memo) => {
   return (dispatch) => {
-    fetch('http://ec2-35-164-103-220.us-west-2.compute.amazonaws.com:3000/memos/', {
+    fetch('http://localhost:3004/memos/', {
       method: 'POST',
       body: JSON.stringify({
         memo: memo,
@@ -97,7 +97,7 @@ export const addMemos = (memo) => {
 export const deleteMemo = (id) => {
   console.log(id)
   return (dispatch) => {
-    fetch('http://ec2-35-164-103-220.us-west-2.compute.amazonaws.com:3000/memos/' + id, {
+    fetch('http://localhost:3004/memos/' + id, {
       method: 'DELETE'
     })
       .then(res => res.json())
@@ -107,7 +107,7 @@ export const deleteMemo = (id) => {
 
 export const fetchMemos = () => {
   return (dispatch) => {
-    fetch('http://ec2-35-164-103-220.us-west-2.compute.amazonaws.com:3000/memos/')
+    fetch('http://localhost:3004/memos/')
       .then(res => res.json())
       .then(memos => dispatch(fetchMemosSuccess(memos)))
   }
