@@ -45,14 +45,13 @@ class Memos extends Component {
               onSubmit={e => {
                 e.preventDefault()
                 this.props.updateMemo(item.id, this.state.currentlyEditingInput)
-                setTimeout(function(){
-                  that.setState({
+                  this.setState({
                     currentlyEditingId: 0,
                     currentlyEditingInput: ''
                   })
-                },200)
+
               }}>
-              
+
               <input onChange={this.handleInputEditChange} type='text' defaultValue={item.memo} />
               <button type='submit' className='waves-effect waves-light btn'>
                 <i className='material-icons left'>input</i>Update
