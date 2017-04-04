@@ -1,0 +1,19 @@
+{
+  "memos": [
+    {
+      "id": 2,
+      "memo": "Belajar Redux",
+      "completed": "false"
+    },
+    {
+      "id": 6,
+      "memo": "Belajar React",
+      "completed": "false"
+    },
+    {
+      "memo": "Belajar RxJS",
+      "completed": false,
+      "id": 7
+    }
+  ]
+}
