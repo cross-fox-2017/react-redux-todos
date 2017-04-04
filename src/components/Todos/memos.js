@@ -52,6 +52,7 @@ class Memos extends Component {
                   })
                 },200)
               }}>
+              
               <input onChange={this.handleInputEditChange} type='text' defaultValue={item.memo} />
               <button type='submit' className='waves-effect waves-light btn'>
                 <i className='material-icons left'>input</i>Update
